@@ -20,315 +20,231 @@
       --ink-subtle: #8a7f6e;
       --accent: #7a1f2b;
       --accent-soft: rgba(122, 31, 43, 0.08);
-      --accent-ink: #4a1119;
-      --rule: #d7cbae;
-      --divider: #e4d9bd;
-      --max-width: 780px;
+      --rule: #d8ceb6;
+      --rule-strong: #1a1612;
     }
 
-    :root[data-theme="dark"] {
-      --bg: #15110c;
-      --bg-paper: #1d1811;
-      --bg-elev: #241e14;
-      --ink: #f1e8d4;
-      --ink-muted: #a69a82;
-      --ink-subtle: #6e634f;
-      --accent: #c87885;
-      --accent-soft: rgba(200, 120, 133, 0.1);
-      --accent-ink: #e39aa5;
-      --rule: #3a3024;
-      --divider: #2e261b;
-    }
+    * { box-sizing: border-box; }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      scroll-behavior: smooth;
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.7;
+      font-family: 'EB Garamond', Georgia, serif;
       font-size: 18px;
-      font-weight: 400;
-      overflow-x: hidden;
-      position: relative;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "liga" 1, "kern" 1;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse at top left, rgba(122, 31, 43, 0.035) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(74, 17, 25, 0.025) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    :root[data-theme="dark"] body::before {
-      background-image:
-        radial-gradient(ellipse at top left, rgba(200, 120, 133, 0.04) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(227, 154, 165, 0.03) 0%, transparent 50%);
-    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .paper {
-      position: relative;
-      z-index: 1;
-      max-width: var(--max-width);
+      max-width: 740px;
       margin: 0 auto;
+      padding: 72px 44px 112px;
       background: var(--bg-paper);
-      border-left: 1px solid var(--rule);
-      border-right: 1px solid var(--rule);
-      padding: 64px 72px 96px;
-      box-shadow: 0 2px 40px rgba(74, 17, 25, 0.04);
-      min-height: 100vh;
+      box-shadow: 0 0 0 1px var(--rule), 0 2px 40px rgba(0,0,0,0.05);
     }
 
-    @media (max-width: 720px) {
-      .paper {
-        padding: 36px 24px 64px;
-        border-left: none;
-        border-right: none;
-      }
-    }
+    /* ---------- Running head ---------- */
 
-    /* Running head */
     .running-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 20px;
-      margin-bottom: 56px;
-      border-bottom: 1px solid var(--rule);
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink-subtle);
-      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      margin-bottom: 56px;
+      border-bottom: 1px solid var(--rule);
     }
 
     .running-head a {
       color: var(--ink-subtle);
-      text-decoration: none;
-      transition: color 0.2s ease;
+      margin-left: 14px;
     }
 
-    .running-head a:hover { color: var(--accent); }
+    .running-head a:hover { color: var(--accent); text-decoration: none; }
 
-    .running-head-right {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
+    /* ---------- Title block ---------- */
 
-    @media (max-width: 540px) {
-      .running-head { font-size: 10px; margin-bottom: 40px; flex-direction: column; gap: 10px; align-items: flex-start; }
-      .running-head-right { gap: 14px; }
-    }
-
-    /* Title block */
     .title-block {
       text-align: center;
-      margin-bottom: 64px;
-      padding-bottom: 48px;
-      border-bottom: 2px double var(--rule);
+      margin-bottom: 48px;
     }
 
     .doc-type {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     h1.thesis-title {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(26px, 3.6vw, 40px);
-      font-weight: 500;
-      font-style: italic;
-      line-height: 1.22;
-      letter-spacing: -0.005em;
-      margin-bottom: 20px;
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin: 0 0 14px;
       color: var(--ink);
     }
 
     .thesis-subtitle {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(18px, 2vw, 22px);
-      font-weight: 400;
-      color: var(--ink-muted);
       font-style: italic;
-      margin-bottom: 32px;
+      font-size: 22px;
+      color: var(--ink-muted);
+      margin: 0 0 32px;
     }
 
     .byline {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 16px;
-      color: var(--ink-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .byline-author {
       font-weight: 600;
-      color: var(--ink);
-      font-size: 19px;
-      display: block;
-      margin-bottom: 6px;
+      font-size: 20px;
     }
 
     .byline-meta {
       font-style: italic;
+      color: var(--ink-muted);
+      font-size: 15px;
     }
 
-    /* Table of contents */
+    /* ---------- TOC ---------- */
+
     .toc {
-      background: var(--bg-elev);
-      border: 1px solid var(--rule);
-      padding: 28px 32px;
-      margin-bottom: 56px;
-      border-radius: 2px;
-    }
-
-    @media (max-width: 540px) {
-      .toc { padding: 22px 24px; }
+      border-top: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+      padding: 20px 0;
+      margin: 0 0 56px;
     }
 
     .toc-title {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--rule);
+      letter-spacing: 0.22em;
+      color: var(--ink-subtle);
+      margin-bottom: 12px;
+      text-align: center;
     }
 
     .toc ol {
       list-style: none;
-      counter-reset: toc;
       padding: 0;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 15.5px;
+      margin: 0;
+      columns: 2;
+      column-gap: 40px;
+      font-size: 16px;
     }
 
     .toc li {
-      counter-increment: toc;
-      padding: 7px 0 7px 36px;
-      position: relative;
+      padding: 2px 0;
+      break-inside: avoid;
+      counter-increment: toc-counter;
     }
+
+    .toc ol { counter-reset: toc-counter; }
 
     .toc li::before {
-      content: counter(toc, upper-roman) ".";
-      position: absolute;
-      left: 0;
-      top: 7px;
-      color: var(--accent);
-      font-style: italic;
-      font-weight: 600;
-      width: 28px;
-      font-size: 14px;
+      content: counter(toc-counter, upper-roman) ". ";
+      display: inline-block;
+      min-width: 2.4em;
+      color: var(--ink-subtle);
+      font-variant-numeric: tabular-nums;
     }
 
-    .toc a {
+    .toc li a {
       color: var(--ink);
-      text-decoration: none;
-      transition: color 0.2s ease;
     }
 
-    .toc a:hover {
-      color: var(--accent);
-    }
+    .toc li a:hover { color: var(--accent); text-decoration: none; }
 
-    /* Abstract */
+    /* ---------- Abstract ---------- */
+
     .abstract-block {
-      padding: 36px 40px;
-      background: var(--accent-soft);
+      margin: 0 0 56px;
+      padding: 32px 36px;
+      background: var(--bg-elev);
       border-left: 3px solid var(--accent);
-      margin-bottom: 72px;
-      position: relative;
-    }
-
-    @media (max-width: 540px) {
-      .abstract-block { padding: 28px 24px; }
     }
 
     .abstract-label {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.22em;
       text-transform: uppercase;
+      letter-spacing: 0.22em;
       color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .abstract-body p {
       font-size: 16.5px;
-      line-height: 1.75;
+      line-height: 1.65;
+      margin: 0 0 10px;
       color: var(--ink);
-      margin-bottom: 16px;
-      text-align: justify;
-      hyphens: auto;
     }
 
-    .abstract-body p:last-child { margin-bottom: 0; }
-
-    .keywords {
-      margin-top: 24px;
-      padding-top: 20px;
+    .abstract-body .keywords {
+      margin-top: 18px;
+      padding-top: 14px;
       border-top: 1px solid var(--rule);
       font-size: 14px;
+      font-style: italic;
       color: var(--ink-muted);
     }
 
-    .keywords strong {
-      font-family: 'Inter', sans-serif;
-      font-size: 10px;
+    .abstract-body .keywords strong {
+      font-style: normal;
       font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-right: 10px;
+      color: var(--ink);
     }
 
-    /* Chapter */
-    .chapter {
-      margin-bottom: 72px;
-    }
+    /* ---------- Chapters ---------- */
+
+    section.chapter { margin: 0 0 56px; }
 
     .chapter-head {
-      margin-bottom: 32px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--rule);
+      margin-bottom: 24px;
     }
 
     .chapter-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 11px;
-      letter-spacing: 0.14em;
-      color: var(--accent);
+      font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent);
       margin-bottom: 10px;
-      font-weight: 500;
     }
 
     h2.chapter-title {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(22px, 2.6vw, 30px);
-      font-weight: 500;
-      font-style: italic;
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.15;
       letter-spacing: -0.005em;
-      line-height: 1.3;
+      margin: 0;
       color: var(--ink);
     }
 
@@ -336,157 +252,56 @@
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 20px;
       font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.005em;
-      margin-top: 36px;
-      margin-bottom: 14px;
-    }
-
-    /* Prose */
-    p.prose {
-      font-size: 17px;
-      line-height: 1.78;
-      color: var(--ink);
-      font-weight: 400;
-      text-align: justify;
-      hyphens: auto;
-      margin-bottom: 16px;
-    }
-
-    p.prose strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    p.prose em {
-      color: var(--accent-ink);
       font-style: italic;
+      color: var(--ink);
+      margin: 28px 0 10px;
     }
+
+    p.prose {
+      margin: 0 0 14px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
+    em { font-style: italic; }
+    strong { font-weight: 600; color: var(--ink); }
 
     .highlight {
-      font-style: italic;
-      color: var(--ink);
-      font-weight: 500;
+      background: var(--accent-soft);
+      padding: 1px 4px;
+      border-radius: 2px;
     }
 
-    /* Research question block */
     .research-question {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(18px, 2vw, 22px);
-      font-weight: 400;
       font-style: italic;
-      line-height: 1.5;
-      color: var(--ink);
-      padding: 28px 36px;
-      background: var(--bg-elev);
+      font-size: 22px;
+      line-height: 1.4;
+      padding: 20px 24px;
+      margin: 18px 0;
       border-left: 3px solid var(--accent);
-      margin: 24px 0;
-    }
-
-    @media (max-width: 540px) {
-      .research-question { padding: 22px 26px; font-size: 17px; }
-    }
-
-    /* Lists */
-    ol.editorial-list, ul.editorial-list {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0 24px 0;
-    }
-
-    ol.editorial-list { counter-reset: ed-list; }
-
-    ol.editorial-list li, ul.editorial-list li {
-      position: relative;
-      padding: 14px 0 14px 40px;
-      border-bottom: 1px solid var(--divider);
+      background: var(--bg-elev);
       color: var(--ink);
-      font-size: 16px;
-      line-height: 1.65;
     }
 
-    ol.editorial-list li:last-child, ul.editorial-list li:last-child {
-      border-bottom: none;
+    ol.editorial-list,
+    ul.editorial-list {
+      padding-left: 28px;
+      margin: 14px 0;
     }
 
-    ol.editorial-list li { counter-increment: ed-list; }
-
-    ol.editorial-list li::before {
-      content: counter(ed-list, upper-roman) ".";
-      position: absolute;
-      left: 0;
-      top: 14px;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      font-style: italic;
+    ol.editorial-list li,
+    ul.editorial-list li {
+      margin: 8px 0;
+      font-size: 17px;
+      line-height: 1.6;
     }
 
-    ul.editorial-list li::before {
-      content: '§';
-      position: absolute;
-      left: 4px;
-      top: 14px;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 15px;
-      color: var(--accent);
-    }
+    /* ---------- Table ---------- */
 
-    /* Phases */
-    .phase-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin: 24px 0;
-    }
-
-    .phase {
-      padding: 24px 28px;
-      background: var(--bg-paper);
-      border: 1px solid var(--rule);
-      border-left: 4px solid var(--accent);
-    }
-
-    @media (max-width: 540px) {
-      .phase { padding: 20px 22px; }
-    }
-
-    .phase-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      color: var(--accent);
-      text-transform: uppercase;
-      display: inline-block;
-      margin-bottom: 4px;
-    }
-
-    .phase-title {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 19px;
-      font-weight: 600;
-      font-style: italic;
-      letter-spacing: -0.005em;
-      color: var(--ink);
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .phase-body {
-      color: var(--ink);
-      font-size: 15.5px;
-      line-height: 1.7;
-      font-weight: 400;
-    }
-
-    /* Table styling */
     .data-table {
-      margin: 28px 0;
-      overflow-x: auto;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
+      margin: 24px 0;
     }
 
     .data-table table {
@@ -494,267 +309,178 @@
       border-collapse: collapse;
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 15px;
-      min-width: 480px;
     }
 
     .data-table caption {
       caption-side: top;
       text-align: left;
-      padding: 16px 20px;
-      background: var(--bg-elev);
-      border-bottom: 1px solid var(--rule);
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent);
+      letter-spacing: 0.14em;
+      color: var(--ink-muted);
+      padding-bottom: 10px;
+    }
+
+    .data-table thead tr {
+      border-top: 1.5px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+
+    .data-table tbody tr:last-child {
+      border-bottom: 1.5px solid var(--rule-strong);
     }
 
     .data-table th {
-      padding: 14px 16px;
-      background: var(--bg-paper);
-      border-bottom: 2px solid var(--rule);
       text-align: left;
       font-weight: 600;
-      color: var(--ink);
+      padding: 10px 12px;
       font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.02em;
     }
 
     .data-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--divider);
-      color: var(--ink);
+      padding: 10px 12px;
+      vertical-align: top;
     }
-
-    .data-table tr:last-child td { border-bottom: none; }
 
     .data-table td.row-head {
       font-weight: 600;
-      color: var(--ink);
-      font-style: italic;
     }
 
-    .data-table td.highlight-cell {
+    .data-table .highlight-cell {
       color: var(--accent);
       font-weight: 600;
-      font-style: italic;
     }
 
-    .data-table tr.summary td {
-      background: var(--accent-soft);
-      font-weight: 600;
-      border-top: 1.5px solid var(--accent);
+    /* ---------- Phase stack ---------- */
+
+    .phase-stack {
+      margin: 20px 0;
     }
 
-    .table-note {
-      font-size: 13px;
-      color: var(--ink-subtle);
-      font-style: italic;
-      margin-top: 10px;
-      text-align: right;
-    }
-
-    /* Key finding callout */
-    .finding-callout {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 24px;
-      padding: 28px 32px;
+    .phase {
+      padding: 18px 20px;
+      margin-bottom: 12px;
       background: var(--bg-elev);
-      border-top: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-      margin: 32px 0;
-      align-items: center;
+      border-left: 3px solid var(--accent);
     }
 
-    @media (max-width: 540px) {
-      .finding-callout {
-        grid-template-columns: 1fr;
-        padding: 24px 24px;
-        gap: 16px;
-      }
-    }
-
-    .finding-number {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 48px;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--accent);
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-
-    .finding-text {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 17px;
-      line-height: 1.6;
-      color: var(--ink);
-    }
-
-    .finding-text strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    /* Pull quote */
-    .pull-quote {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(20px, 2.4vw, 26px);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.45;
-      color: var(--ink);
-      padding: 32px 48px;
-      margin: 36px 0;
-      position: relative;
-      text-align: center;
-    }
-
-    .pull-quote::before, .pull-quote::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      width: 80px;
-      height: 1px;
-      background: var(--accent);
-      transform: translateX(-50%);
-    }
-
-    .pull-quote::before { top: 0; }
-    .pull-quote::after { bottom: 0; }
-
-    /* References */
-    .references {
-      font-size: 14.5px;
-      line-height: 1.6;
-      color: var(--ink);
-      counter-reset: ref;
-    }
-
-    .references .ref-entry {
-      padding: 12px 0 12px 36px;
-      border-bottom: 1px solid var(--divider);
-      position: relative;
-      counter-increment: ref;
-    }
-
-    .references .ref-entry:last-child { border-bottom: none; }
-
-    .references .ref-entry::before {
-      content: "[" counter(ref) "]";
-      position: absolute;
-      left: 0;
-      top: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    /* Ornamental divider */
-    .ornament {
-      text-align: center;
-      margin: 56px 0;
-      color: var(--accent);
-      opacity: 0.5;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 20px;
-      letter-spacing: 0.5em;
-    }
-
-    /* Meta footer */
-    .colophon {
-      margin-top: 72px;
-      padding: 32px 36px;
-      background: var(--bg-elev);
-      border: 1px solid var(--rule);
-      border-top: 2px solid var(--accent);
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    @media (max-width: 640px) {
-      .colophon {
-        grid-template-columns: 1fr;
-        padding: 24px 28px;
-        gap: 16px;
-      }
-    }
-
-    .colophon-label {
+    .phase-tag {
+      display: inline-block;
       font-family: 'Inter', sans-serif;
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.18em;
       text-transform: uppercase;
+      letter-spacing: 0.2em;
       color: var(--accent);
+      margin-right: 10px;
+    }
+
+    .phase-title {
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--ink);
+    }
+
+    .phase-body {
+      margin-top: 8px;
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* ---------- Pull quote ---------- */
+
+    .pull-quote {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 24px;
+      line-height: 1.4;
+      text-align: center;
+      padding: 28px 20px;
+      margin: 32px 0;
+      border-top: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+      color: var(--ink);
+    }
+
+    .ornament {
+      text-align: center;
+      color: var(--accent);
+      font-size: 20px;
+      letter-spacing: 0.8em;
+      margin: 36px 0 24px;
+    }
+
+    /* ---------- References ---------- */
+
+    .references {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .ref-entry {
+      padding-left: 28px;
+      text-indent: -28px;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+
+    .ref-entry em { font-style: italic; }
+
+    /* ---------- Colophon + footer ---------- */
+
+    .colophon {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 48px 0 20px;
+      padding: 20px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+    }
+
+    .colophon-label {
       display: block;
-      margin-bottom: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ink-subtle);
+      margin-bottom: 4px;
     }
 
     .colophon-value {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 16px;
-      font-weight: 500;
       color: var(--ink);
-      font-style: italic;
+      font-size: 13px;
     }
 
-    /* Footer */
-    footer.page-footer {
-      margin-top: 72px;
-      padding-top: 28px;
-      border-top: 1px solid var(--rule);
+    .page-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 14px;
       font-family: 'Inter', sans-serif;
       font-size: 12px;
-      color: var(--ink-subtle);
-    }
-
-    footer.page-footer a {
       color: var(--ink-muted);
-      text-decoration: none;
-      transition: color 0.2s ease;
+      padding-top: 10px;
     }
 
-    footer.page-footer a:hover { color: var(--accent); }
+    .page-footer a { color: var(--ink-muted); }
+    .page-footer a:hover { color: var(--accent); text-decoration: none; }
 
-    .theme-toggle {
-      background: var(--bg-elev);
-      border: 1px solid var(--rule);
-      color: var(--ink-muted);
-      padding: 7px 16px;
-      border-radius: 999px;
-      font-size: 11px;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      transition: all 0.2s ease;
-    }
+    /* ---------- Responsive ---------- */
 
-    .theme-toggle:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    /* Fade in */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .title-block, .abstract-block, .chapter, .colophon {
-      animation: fadeInUp 0.5s ease-out both;
+    @media (max-width: 720px) {
+      .paper { padding: 40px 22px 72px; max-width: 100%; }
+      h1.thesis-title { font-size: 38px; }
+      .thesis-subtitle { font-size: 18px; }
+      h2.chapter-title { font-size: 28px; }
+      .toc ol { columns: 1; }
+      .colophon { grid-template-columns: 1fr; }
+      .page-footer { flex-direction: column; gap: 8px; align-items: flex-start; }
     }
   </style>
 </head>
@@ -763,20 +489,20 @@
   <div class="paper">
 
     <div class="running-head">
-      <span>Swathi Pallikala &nbsp;·&nbsp; Independent Research</span>
-      <div class="running-head-right">
+      <span>Swathi Pallikala &nbsp;&middot;&nbsp; Independent Research</span>
+      <div>
         <a href="https://pallikalas.github.io/">Portfolio</a>
         <a href="SwathiPallikala_Thesis.pdf" target="_blank" rel="noopener">PDF</a>
       </div>
     </div>
 
     <div class="title-block">
-      <div class="doc-type">Independent Research &nbsp;·&nbsp; Thesis Proposal and Framework</div>
+      <div class="doc-type">Independent Research &nbsp;&middot;&nbsp; Thesis Proposal and Framework</div>
       <h1 class="thesis-title">Ethical Evaluation of AI Agents</h1>
       <div class="thesis-subtitle">A Systematic Benchmark Audit and Framework Proposal</div>
       <div class="byline">
         <span class="byline-author">Swathi Pallikala</span>
-        <span class="byline-meta">Independent Research &nbsp;·&nbsp; Master of Science in Computer Science, California State University, East Bay &nbsp;·&nbsp; 2026</span>
+        <span class="byline-meta">Independent Research &nbsp;&middot;&nbsp; Master of Science in Computer Science, California State University, East Bay &nbsp;&middot;&nbsp; 2026</span>
       </div>
     </div>
 
@@ -802,7 +528,7 @@
           The rapid deployment of autonomous AI agents across consequential domains including healthcare, legal services, financial management, and enterprise workflows has created an urgent governance challenge. While the field of AI evaluation has produced sophisticated benchmarks for measuring agent capability, these frameworks measure exclusively what agents <em>can do</em> rather than how they <em>do it</em>. The ethical dimensions most critical to responsible agent deployment, including respect for human autonomy, harm avoidance, transparency and non-deception, privacy compliance, and accountability, are systematically absent from current evaluation practice.
         </p>
         <p>
-          This independent research is presented as a <strong>thesis proposal and framework</strong> that addresses that gap through three interconnected contributions. <strong>First</strong>, a structured literature review of twelve leading AI agent benchmarks characterizes the ethical dimensions those benchmarks do and do not measure, establishing the gap this work seeks to fill. <strong>Second</strong>, the <strong>Ethical Evaluation Framework for AI Agents (EEFA)</strong> is proposed as a comprehensive, operationalizable instrument for ethical agent evaluation, grounded in established AI ethics principles and designed for use by developers, auditors, and regulators. <strong>Third</strong>, a proposed validation protocol is specified for applying the EEFA to deployed agent systems in a reproducible manner, with illustrative test scenarios across all five framework dimensions.
+          This independent research is presented as a <strong>thesis proposal and framework</strong> that addresses that gap through three interconnected contributions. <strong>First</strong>, a structured literature review of twelve leading AI agent benchmarks characterizes the ethical dimensions those benchmarks do and do not measure, establishing the gap this work seeks to fill. <strong>Second</strong>, the <strong>Ethical Evaluation Framework for AI Agents (EEFA)</strong> is proposed as a comprehensive, operationalizable instrument for ethical agent evaluation, grounded in established AI ethics principles and designed for use by developers, auditors, and regulators. <strong>Third</strong>, a reproducible validation protocol is specified for applying the EEFA to deployed agent systems, with illustrative test scenarios across all five framework dimensions.
         </p>
         <p>
           The EEFA is organized across five primary dimensions: Autonomy Preservation, Harm Avoidance, Transparency and Non-Deception, Privacy Compliance, and Accountability and Traceability. The framework maps directly onto the requirements of the <strong>EU AI Act</strong> and the <strong>NIST AI Risk Management Framework</strong>, positioning it as a practical compliance assessment instrument for high-risk AI applications. Empirical application of the framework across diverse benchmarks and agent systems is identified as a priority direction for future work.
@@ -824,7 +550,7 @@
 
       <h3 class="subsection">Background</h3>
       <p class="prose">
-        The rapid advancement of artificial intelligence has ushered in a new paradigm of autonomous systems known as <strong>AI agents</strong>. Unlike traditional software or even conventional machine learning models that respond passively to queries, AI agents are designed to perceive their environment, formulate plans, execute sequences of actions, and adapt their behavior based on outcomes, all with minimal human intervention.
+        The rapid advancement of artificial intelligence has ushered in a new paradigm of autonomous systems known as <strong>AI agents</strong>. Unlike traditional software or conventional machine learning models that respond passively to queries, AI agents are designed to perceive their environment, formulate plans, execute sequences of actions, and adapt their behavior based on outcomes, all with minimal human intervention.
       </p>
       <p class="prose">
         The commercial deployment of AI agents has accelerated significantly since 2023. Systems such as <span class="highlight">AutoGPT</span>, <span class="highlight">Claude Computer Use</span>, <span class="highlight">Devin</span>, and various multi-agent frameworks built on <span class="highlight">LangChain</span> and <span class="highlight">AutoGen</span> are now being integrated into enterprise workflows, customer service operations, healthcare administration, and software development pipelines. This new generation of agents is characterized by persistent memory across interactions, access to external tools and APIs, and the capacity to take consequential real-world actions including executing financial transactions, sending communications, and modifying files.
@@ -835,7 +561,7 @@
 
       <h3 class="subsection">The Evaluation Gap</h3>
       <p class="prose">
-        The dominant frameworks for evaluating AI agents focus almost exclusively on capability metrics. Benchmarks such as <span class="highlight">WebArena</span>, <span class="highlight">AgentBench</span>, and <span class="highlight">SWE-bench</span> measure task completion rates, efficiency, and accuracy across a range of simulated and real-world environments. While these metrics are necessary and valuable, they are profoundly insufficient as a basis for responsible deployment.
+        The dominant frameworks for evaluating AI agents focus almost exclusively on capability metrics. Benchmarks such as <span class="highlight">WebArena</span>, <span class="highlight">AgentBench</span>, and <span class="highlight">SWE-bench</span> measure task completion rates, efficiency, and accuracy across a range of simulated and real-world environments. While these metrics are necessary and valuable, they are insufficient as a basis for responsible deployment.
       </p>
       <p class="prose">
         Consider the following scenario: an AI agent tasked with managing a user's email account achieves a 95% task completion rate on a capability benchmark. Yet in the course of completing those tasks, it may have accessed private messages not relevant to the assigned task, shared sensitive information with third parties, taken irreversible actions without seeking user confirmation, or misrepresented its identity to external contacts. None of these behaviors would be captured by a completion-rate metric, yet all of them represent serious ethical failures with real-world consequences.
@@ -885,7 +611,7 @@
       </p>
     </section>
 
-    <div class="ornament">· · ·</div>
+    <div class="ornament">&middot; &middot; &middot;</div>
 
     <section class="chapter" id="methodology">
       <div class="chapter-head">
@@ -908,7 +634,7 @@
 
         <div class="phase">
           <span class="phase-tag">Phase II</span>
-          <span class="phase-title">Empirical Benchmark Audit</span>
+          <span class="phase-title">Structured Benchmark Audit</span>
           <div class="phase-body">
             A structured ethical rubric is applied to twelve AI agent benchmarks: WebArena, AgentBench, SWE-bench, OSWorld, VisualWebArena, AssistantBench, AgentSafetyBench, OS-HARM, CUAHarm, BrowserGym, GAIA, and HELM Safety. Each dimension decomposed into three to five sub-criteria rated on a three-point scale.
           </div>
@@ -916,7 +642,7 @@
 
         <div class="phase">
           <span class="phase-tag">Phase III</span>
-          <span class="phase-title">Framework Development and Validation</span>
+          <span class="phase-title">Framework Development and Validation Protocol</span>
           <div class="phase-body">
             A reproducible validation protocol is specified for applying the EEFA to three representative deployed AI agent systems: AutoGPT, Claude Computer Use, and a custom agent built on the OpenAI Assistants API. The protocol specifies standardized task scenarios designed to create opportunities for ethical failures in each framework dimension without constituting harmful misuse. Empirical application of the protocol is identified as the priority direction for future work.
           </div>
@@ -939,7 +665,7 @@
 
       <div class="data-table">
         <table>
-          <caption>Table 1 &nbsp;·&nbsp; EEFA Framework Summary</caption>
+          <caption>Table 1 &nbsp;&middot;&nbsp; EEFA Framework Summary</caption>
           <thead>
             <tr>
               <th>Dimension</th>
@@ -1014,7 +740,7 @@
       </p>
     </section>
 
-    <div class="ornament">· · ·</div>
+    <div class="ornament">&middot; &middot; &middot;</div>
 
     <section class="chapter" id="validation">
       <div class="chapter-head">
@@ -1023,7 +749,7 @@
       </div>
 
       <p class="prose">
-        This chapter specifies the empirical validation protocol under which the EEFA framework is intended to be applied, both to existing agent benchmarks and to deployed agent systems. The protocol is designed to be reproducible by independent researchers and to generate evidence capable of answering the research question of whether the framework surfaces ethical dimensions missed by capability and safety benchmarks. Empirical application of this protocol is identified as the priority direction for future work.
+        This chapter specifies the validation protocol under which the EEFA framework is intended to be applied, both to existing agent benchmarks and to deployed agent systems. The protocol is designed to be reproducible by independent researchers and to generate evidence capable of answering the research question of whether the framework surfaces ethical dimensions missed by capability and safety benchmarks. Empirical application of this protocol is identified as the priority direction for future work.
       </p>
 
       <h3 class="subsection">Protocol for Benchmark Audit</h3>
@@ -1057,7 +783,7 @@
 
       <h3 class="subsection">Expected Outcomes</h3>
       <p class="prose">
-        Based on the gap identified in the literature review, this protocol is <em>anticipated</em> to produce evidence that existing benchmarks exhibit low mean coverage of the EEFA dimensions, that safety-focused benchmarks cover the Harm Avoidance dimension more comprehensively than the other four, and that deployed agent systems exhibit systematic variation in ethical performance that is not captured by existing capability metrics. These expectations are hypotheses to be tested rather than findings established by this thesis.
+        Based on the gap identified in the literature review, this protocol is <em>anticipated</em> to produce evidence that existing benchmarks exhibit low mean coverage of the EEFA dimensions, that safety-focused benchmarks cover the Harm Avoidance dimension more comprehensively than the other four, and that deployed agent systems exhibit systematic variation in ethical performance that is not captured by existing capability metrics. These expectations are hypotheses to be tested rather than findings established by this proposal.
       </p>
     </section>
 
@@ -1153,45 +879,14 @@
     </div>
 
     <footer class="page-footer">
-      <span>© 2026 Swathi Pallikala &nbsp;·&nbsp; Independent Research</span>
+      <span>&copy; 2026 Swathi Pallikala &nbsp;&middot;&nbsp; Independent Research</span>
       <div style="display:flex; gap: 14px; align-items: center;">
         <a href="https://pallikalas.github.io/">Portfolio</a>
         <a href="SwathiPallikala_Thesis.pdf" target="_blank" rel="noopener">Full PDF</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">Dark mode</button>
       </div>
     </footer>
 
   </div>
-
-  <script>
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById('themeToggle');
-      const KEY = 'sp-thesis-theme';
-
-      function setLabel() {
-        const current = root.getAttribute('data-theme');
-        btn.textContent = current === 'dark' ? 'Light mode' : 'Dark mode';
-      }
-
-      try {
-        const saved = localStorage.getItem(KEY);
-        if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
-      } catch (e) { /* storage blocked */ }
-
-      setLabel();
-
-      btn.addEventListener('click', function () {
-        const current = root.getAttribute('data-theme');
-        let next;
-        if (current === 'dark') next = 'light';
-        else next = 'light';
-        root.setAttribute('data-theme', next);
-        setLabel();
-        try { localStorage.setItem(KEY, next); } catch (e) { /* storage blocked */ }
-      });
-    })();
-  </script>
 
 </body>
 </html>

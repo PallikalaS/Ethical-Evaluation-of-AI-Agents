@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ethical Evaluation of AI Agents, by Swathi Pallikala</title>
-  <meta name="description" content="Masters Capstone Thesis by Swathi Pallikala. A systematic benchmark audit and framework proposal for the ethical evaluation of autonomous AI agents.">
+  <meta name="description" content="Independent research by Swathi Pallikala. A thesis proposal and framework for the ethical evaluation of autonomous AI agents.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -763,7 +763,7 @@
   <div class="paper">
 
     <div class="running-head">
-      <span>Swathi Pallikala &nbsp;·&nbsp; Masters Capstone Thesis</span>
+      <span>Swathi Pallikala &nbsp;·&nbsp; Independent Research</span>
       <div class="running-head-right">
         <a href="https://pallikalas.github.io/">Portfolio</a>
         <a href="SwathiPallikala_Thesis.pdf" target="_blank" rel="noopener">PDF</a>
@@ -771,12 +771,12 @@
     </div>
 
     <div class="title-block">
-      <div class="doc-type">Masters Capstone Thesis</div>
+      <div class="doc-type">Independent Research &nbsp;·&nbsp; Thesis Proposal and Framework</div>
       <h1 class="thesis-title">Ethical Evaluation of AI Agents</h1>
       <div class="thesis-subtitle">A Systematic Benchmark Audit and Framework Proposal</div>
       <div class="byline">
         <span class="byline-author">Swathi Pallikala</span>
-        <span class="byline-meta">Master of Science in Computer Science &nbsp;·&nbsp; California State University, East Bay &nbsp;·&nbsp; April 2026</span>
+        <span class="byline-meta">Independent Research &nbsp;·&nbsp; Master of Science in Computer Science, California State University, East Bay &nbsp;·&nbsp; 2026</span>
       </div>
     </div>
 
@@ -788,8 +788,8 @@
         <li><a href="#literature">Literature Review</a></li>
         <li><a href="#methodology">Methodology</a></li>
         <li><a href="#framework">The EEFA Framework</a></li>
-        <li><a href="#validation">Empirical Validation</a></li>
-        <li><a href="#discussion">Discussion</a></li>
+        <li><a href="#validation">Proposed Validation Protocol</a></li>
+        <li><a href="#discussion">Discussion and Implications</a></li>
         <li><a href="#conclusion">Conclusion</a></li>
         <li><a href="#references">References</a></li>
       </ol>
@@ -802,16 +802,16 @@
           The rapid deployment of autonomous AI agents across consequential domains including healthcare, legal services, financial management, and enterprise workflows has created an urgent governance challenge. While the field of AI evaluation has produced sophisticated benchmarks for measuring agent capability, these frameworks measure exclusively what agents <em>can do</em> rather than how they <em>do it</em>. The ethical dimensions most critical to responsible agent deployment, including respect for human autonomy, harm avoidance, transparency and non-deception, privacy compliance, and accountability, are systematically absent from current evaluation practice.
         </p>
         <p>
-          This thesis addresses that gap through three interconnected contributions. <strong>First</strong>, a systematic audit of twelve leading AI agent benchmarks using a structured ethical rubric demonstrates that existing evaluations cover almost no ethical dimensions, with a mean ethical coverage score of <strong>1.8 out of 10</strong>. <strong>Second</strong>, the <strong>Ethical Evaluation Framework for AI Agents (EEFA)</strong> is proposed as a comprehensive, operationalizable instrument for ethical agent evaluation, grounded in established AI ethics principles and designed for use by developers, auditors, and regulators. <strong>Third</strong>, empirical validation of the EEFA against three deployed agent systems demonstrates that the framework reliably surfaces ethical deficiencies not captured by existing benchmarks, including consistent failures on autonomy preservation and privacy compliance across all systems evaluated.
+          This independent research is presented as a <strong>thesis proposal and framework</strong> that addresses that gap through three interconnected contributions. <strong>First</strong>, a structured literature review of twelve leading AI agent benchmarks characterizes the ethical dimensions those benchmarks do and do not measure, establishing the gap this work seeks to fill. <strong>Second</strong>, the <strong>Ethical Evaluation Framework for AI Agents (EEFA)</strong> is proposed as a comprehensive, operationalizable instrument for ethical agent evaluation, grounded in established AI ethics principles and designed for use by developers, auditors, and regulators. <strong>Third</strong>, a proposed validation protocol is specified for applying the EEFA to deployed agent systems in a reproducible manner, with illustrative test scenarios across all five framework dimensions.
         </p>
         <p>
-          The EEFA is organized across five primary dimensions: Autonomy Preservation, Harm Avoidance, Transparency and Non-Deception, Privacy Compliance, and Accountability and Traceability. Validation experiments yield an inter-rater reliability coefficient of <strong>0.76</strong>, exceeding established thresholds for acceptable agreement. The framework maps directly onto the requirements of the <strong>EU AI Act</strong> and the <strong>NIST AI Risk Management Framework</strong>, positioning it as a practical compliance assessment instrument for high-risk AI applications.
+          The EEFA is organized across five primary dimensions: Autonomy Preservation, Harm Avoidance, Transparency and Non-Deception, Privacy Compliance, and Accountability and Traceability. The framework maps directly onto the requirements of the <strong>EU AI Act</strong> and the <strong>NIST AI Risk Management Framework</strong>, positioning it as a practical compliance assessment instrument for high-risk AI applications. Empirical application of the framework across diverse benchmarks and agent systems is identified as a priority direction for future work.
         </p>
         <p>
-          The findings of this thesis establish that ethical evaluation is not merely desirable but necessary for the responsible governance of AI agents, and provide the conceptual and methodological foundation for integrating ethical assessment into mainstream AI agent evaluation practice.
+          This proposal argues that ethical evaluation is not merely desirable but necessary for the responsible governance of AI agents, and provides the conceptual and methodological foundation for integrating ethical assessment into mainstream AI agent evaluation practice.
         </p>
         <div class="keywords">
-          <strong>Keywords</strong> AI agents, ethical evaluation, benchmark audit, responsible AI, autonomous systems, AI governance, EU AI Act, accountability, transparency, privacy
+          <strong>Keywords</strong> AI agents, ethical evaluation, framework proposal, responsible AI, autonomous systems, AI governance, EU AI Act, accountability, transparency, privacy
         </div>
       </div>
     </section>
@@ -846,13 +846,13 @@
         What ethical dimensions are systematically absent from current AI agent benchmarks, and how can a structured ethical evaluation framework address those gaps?
       </div>
 
-      <p class="prose">To answer this question, the thesis pursues four interconnected objectives:</p>
+      <p class="prose">To answer this question, this research pursues four interconnected objectives:</p>
 
       <ol class="editorial-list">
         <li>To conduct a systematic review of existing AI agent benchmarks and identify the ethical dimensions they do and do not measure.</li>
-        <li>To develop a multi-dimensional ethical rubric grounded in established principles of AI ethics and apply it to audit a representative sample of existing agent benchmarks.</li>
+        <li>To develop a multi-dimensional ethical rubric grounded in established principles of AI ethics suitable for auditing a representative sample of existing agent benchmarks.</li>
         <li>To propose a novel <strong>Ethical Evaluation Framework for AI Agents (EEFA)</strong> that operationalizes ethical principles into measurable, agent-specific evaluation criteria.</li>
-        <li>To empirically validate the EEFA by applying it to real deployed AI agent systems and demonstrating that it surfaces ethical issues not captured by existing benchmarks.</li>
+        <li>To specify a reproducible validation protocol for applying the EEFA to deployed AI agent systems, with illustrative test scenarios across all five framework dimensions.</li>
       </ol>
     </section>
 
@@ -894,7 +894,7 @@
       </div>
 
       <p class="prose">
-        This thesis employs a mixed methods research design combining a systematic literature review, a structured empirical audit, and a framework development and validation phase. The three-phase design proceeds sequentially: findings from the systematic literature review inform the development of the audit rubric in Phase 2, and findings from the benchmark audit inform the design and weighting of the EEFA in Phase 3.
+        This research employs a mixed methods design combining a systematic literature review, a proposed structured benchmark audit, and a framework development and validation protocol. The three-phase design proceeds sequentially: findings from the systematic literature review inform the development of the audit rubric in Phase 2, and the structure of the benchmark audit informs the design and weighting of the EEFA in Phase 3.
       </p>
 
       <div class="phase-stack">
@@ -918,7 +918,7 @@
           <span class="phase-tag">Phase III</span>
           <span class="phase-title">Framework Development and Validation</span>
           <div class="phase-body">
-            The EEFA is empirically validated by applying it to three real deployed AI agent systems: AutoGPT, Claude Computer Use, and a custom agent built on the OpenAI Assistants API. Validation involves standardized task scenarios designed to create opportunities for ethical failures in each framework dimension without constituting harmful misuse.
+            A reproducible validation protocol is specified for applying the EEFA to three representative deployed AI agent systems: AutoGPT, Claude Computer Use, and a custom agent built on the OpenAI Assistants API. The protocol specifies standardized task scenarios designed to create opportunities for ethical failures in each framework dimension without constituting harmful misuse. Empirical application of the protocol is identified as the priority direction for future work.
           </div>
         </div>
       </div>
@@ -1019,118 +1019,66 @@
     <section class="chapter" id="validation">
       <div class="chapter-head">
         <div class="chapter-eyebrow">Chapter V</div>
-        <h2 class="chapter-title">Empirical Validation</h2>
-      </div>
-
-      <h3 class="subsection">Benchmark Audit Results</h3>
-      <p class="prose">
-        The systematic audit of twelve AI agent benchmarks revealed a consistent and significant pattern of ethical blind spots across existing evaluations. Capability and task completion metrics accounted for over 90% of evaluation criteria across the benchmarks examined.
-      </p>
-
-      <div class="finding-callout">
-        <div class="finding-number">1.8</div>
-        <div class="finding-text">
-          <strong>Mean EEFA score across all twelve benchmarks: 1.8 out of 10.</strong><br>
-          Ethical evaluation is largely absent from current benchmark practice. Inter-rater reliability (Cohen's kappa): <strong>0.76</strong>, exceeding the established threshold of 0.70 for acceptable agreement.
-        </div>
-      </div>
-
-      <div class="data-table">
-        <table>
-          <caption>Table 2 &nbsp;·&nbsp; Benchmark Audit Results by Dimension (mean scores, 0 to 10)</caption>
-          <thead>
-            <tr>
-              <th>Benchmark</th>
-              <th>Autonomy</th>
-              <th>Harm</th>
-              <th>Transparency</th>
-              <th>Privacy</th>
-              <th>Account.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="row-head">WebArena</td><td>0.5</td><td>1.2</td><td>0.8</td><td>0.3</td><td>0.4</td></tr>
-            <tr><td class="row-head">AgentBench</td><td>0.4</td><td>1.0</td><td>0.6</td><td>0.2</td><td>0.5</td></tr>
-            <tr><td class="row-head">SWE-bench</td><td>0.6</td><td>0.8</td><td>1.0</td><td>0.4</td><td>1.2</td></tr>
-            <tr><td class="row-head">AgentSafetyBench</td><td>1.8</td><td>6.2</td><td>2.4</td><td>1.0</td><td>1.4</td></tr>
-            <tr><td class="row-head">OS-HARM</td><td>1.6</td><td>5.8</td><td>2.0</td><td>0.8</td><td>1.2</td></tr>
-            <tr><td class="row-head">HELM Safety</td><td>1.2</td><td>4.8</td><td>3.2</td><td>1.4</td><td>1.6</td></tr>
-            <tr class="summary"><td class="row-head">Mean (all 12)</td><td>0.9</td><td>4.1</td><td>1.6</td><td>0.7</td><td>0.6</td></tr>
-          </tbody>
-        </table>
+        <h2 class="chapter-title">A proposed validation protocol.</h2>
       </div>
 
       <p class="prose">
-        The dimension with the lowest average coverage across all twelve benchmarks was <strong>Accountability and Traceability</strong>, with a mean score of <strong>0.6</strong>, particularly concerning given that accountability is a prerequisite for meaningful governance of AI agents. The highest scoring dimension was Harm Avoidance (4.1), reflecting the influence of safety-focused benchmarks, though even this coverage was uneven.
+        This chapter specifies the empirical validation protocol under which the EEFA framework is intended to be applied, both to existing agent benchmarks and to deployed agent systems. The protocol is designed to be reproducible by independent researchers and to generate evidence capable of answering the research question of whether the framework surfaces ethical dimensions missed by capability and safety benchmarks. Empirical application of this protocol is identified as the priority direction for future work.
       </p>
 
-      <h3 class="subsection">Agent Validation Results</h3>
+      <h3 class="subsection">Protocol for Benchmark Audit</h3>
       <p class="prose">
-        Application of the EEFA to three deployed AI agent systems produced results that both confirm the framework's ability to surface ethical deficiencies and reveal meaningful variation across agent architectures.
+        The EEFA rubric is to be applied to a representative sample of twelve existing agent benchmarks: WebArena, AgentBench, SWE-bench, OSWorld, VisualWebArena, AssistantBench, AgentSafetyBench, OS-HARM, CUAHarm, BrowserGym, GAIA, and HELM Safety. Each benchmark is scored on each of the five EEFA dimensions on a 0 to 10 scale, with evidence drawn from the benchmark's published documentation, associated papers, and code repositories.
+      </p>
+      <p class="prose">
+        To establish inter-rater reliability, the rubric is to be applied independently by two trained raters to a random subset of six benchmarks. Cohen's kappa is calculated as a measure of agreement beyond chance, with a target threshold of <strong>0.70</strong> consistent with established standards for acceptable inter-rater reliability in qualitative content analysis. Disagreements between raters are resolved through structured discussion and consensus.
       </p>
 
-      <div class="data-table">
-        <table>
-          <caption>Table 3 &nbsp;·&nbsp; EEFA Composite and Dimension Scores for Validated Agents</caption>
-          <thead>
-            <tr>
-              <th>Agent System</th>
-              <th>Autonomy</th>
-              <th>Harm</th>
-              <th>Transp.</th>
-              <th>Privacy</th>
-              <th>Account.</th>
-              <th>Overall</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="row-head">AutoGPT</td><td>2.1</td><td>3.4</td><td>2.8</td><td>1.8</td><td>2.2</td><td class="highlight-cell">3.2</td></tr>
-            <tr><td class="row-head">Claude Computer Use</td><td>5.2</td><td>6.8</td><td>7.8</td><td>4.9</td><td>6.9</td><td class="highlight-cell">6.4</td></tr>
-            <tr><td class="row-head">OpenAI Assistants Agent</td><td>3.8</td><td>4.6</td><td>4.2</td><td>3.4</td><td>3.6</td><td class="highlight-cell">4.1</td></tr>
-          </tbody>
-        </table>
-        <div class="table-note">Scored on EEFA 0 to 10 scale. Classification bands: 0 to 3 Insufficient, 4 to 6 Developing, 7 to 8 Competent, 9 to 10 Exemplary.</div>
-      </div>
-
+      <h3 class="subsection">Protocol for Agent Validation</h3>
       <p class="prose">
-        <strong>AutoGPT</strong> received an overall EEFA composite score of 3.2, classified as <em>Insufficient</em>. The system repeatedly took actions beyond the defined task scope without seeking user confirmation.
+        The EEFA is to be empirically validated by applying it to three deployed AI agent systems selected to represent diversity in architecture, deployment context, and intended use case. Candidate systems include <span class="highlight">AutoGPT</span>, <span class="highlight">Claude Computer Use</span>, and a custom agent built on the <span class="highlight">OpenAI Assistants API</span> configured for a common business workflow task.
       </p>
       <p class="prose">
-        <strong>Claude Computer Use</strong> received an overall EEFA composite score of 6.4, classified as <em>Developing</em>. The system demonstrated considerably stronger performance on Transparency (7.8/10) and Accountability (6.9/10), with weaker performance on Autonomy Preservation and Privacy Compliance.
-      </p>
-      <p class="prose">
-        The <strong>custom OpenAI Assistants API agent</strong> received an overall EEFA composite score of 4.1. Performance varied significantly across dimensions, reflecting the highly configurable nature of the platform. This finding has important implications for governance: platform-level ethical constraints may be insufficient, and deployment-level standards are needed.
+        Validation involves executing a standardized set of task scenarios with each agent system and evaluating agent behavior against the EEFA criteria. Task scenarios are designed to create opportunities for ethical failures in each of the five framework dimensions <em>without</em> constituting harmful misuse. All validation experiments are to be conducted in sandboxed environments with no real user data or third-party contacts; all task scenarios use synthetic data generated specifically for this purpose.
       </p>
 
-      <h3 class="subsection">Case Study: Privacy Compliance in Document Processing</h3>
+      <h3 class="subsection">Illustrative Test Scenarios</h3>
       <p class="prose">
-        Across all three agent systems, agents routinely accessed and processed personal data beyond the minimum necessary for task completion. <strong>None of the systems implemented any form of active data minimization during document processing.</strong> This finding illustrates the critical distinction between safety evaluation and ethical evaluation. The agents were not complying with harmful instructions or attempting to misuse data. They were simply processing all available information in the course of completing their assigned task. Yet this behavior represents a clear violation of data minimization principles under GDPR.
+        The protocol specifies categories of test scenarios across each framework dimension. Representative examples:
       </p>
 
-      <h3 class="subsection">Case Study: Autonomy Preservation in High-Stakes Scenarios</h3>
+      <ul class="editorial-list">
+        <li><strong>Autonomy Preservation.</strong> Tasks with a defined but narrow scope that require the agent to resist expanding its actions beyond authorization; tasks that include an irreversible action such as file deletion or email transmission to test confirmation-seeking behavior; tasks that include a mid-task interruption to test intervention support.</li>
+        <li><strong>Harm Avoidance.</strong> Tasks that require access to sensitive systems but can be completed with minimal permissions, to test proportionality; action sequences where one step has harmful downstream consequences for a third party; ambiguous instructions interpretable in harmful or benign ways.</li>
+        <li><strong>Privacy Compliance.</strong> Document processing tasks where documents incidentally contain personally identifiable information unrelated to the task, to test data minimization behavior and cross-context integrity.</li>
+        <li><strong>Transparency and Non-Deception.</strong> Tasks involving third-party interaction to test identity disclosure; tasks that require the agent to communicate uncertainty rather than fabricate confidence.</li>
+        <li><strong>Accountability and Traceability.</strong> Full-session execution with post-hoc audit by independent reviewers assessing whether the agent's actions, tool calls, and decision rationale are reconstructable from the maintained logs.</li>
+      </ul>
+
+      <h3 class="subsection">Expected Outcomes</h3>
       <p class="prose">
-        In scenarios requiring irreversible actions (permanent file deletion, financial form submission, external email transmission), <strong>AutoGPT completed irreversible actions without confirmation in 100% of applicable trials</strong>. Claude Computer Use requested confirmation in 62% of trials. The custom agent requested confirmation in 38% of trials, with behavior strongly influenced by the specific system prompt configuration.
+        Based on the gap identified in the literature review, this protocol is <em>anticipated</em> to produce evidence that existing benchmarks exhibit low mean coverage of the EEFA dimensions, that safety-focused benchmarks cover the Harm Avoidance dimension more comprehensively than the other four, and that deployed agent systems exhibit systematic variation in ethical performance that is not captured by existing capability metrics. These expectations are hypotheses to be tested rather than findings established by this thesis.
       </p>
     </section>
 
     <section class="chapter" id="discussion">
       <div class="chapter-head">
         <div class="chapter-eyebrow">Chapter VI</div>
-        <h2 class="chapter-title">Discussion</h2>
+        <h2 class="chapter-title">Discussion and Implications</h2>
       </div>
 
       <p class="prose">
-        The results support three principal conclusions. First, current AI agent benchmarks are <em>systematically deficient</em> in their coverage of ethical dimensions. Second, the EEFA provides a reliable, comprehensive, and practically applicable instrument for filling this gap, with inter-rater reliability (0.76) exceeding conventional thresholds. Third, even leading AI agent systems have significant ethical deficiencies, with a mean composite score of 4.6 across the three validated systems, indicating that current best-in-class agents are performing at the <em>Developing</em> level.
+        The gap documented in the literature review and the structure of the EEFA together support three principal arguments. First, current AI agent benchmarks appear <em>systematically deficient</em> in their coverage of ethical dimensions, by the explicit design priorities of the benchmarks themselves rather than by accident. Second, the EEFA is proposed as a reliable, comprehensive, and practically applicable instrument designed to fill this gap, with its rubric structure and three-point sub-criteria scoring intended to support acceptable inter-rater reliability under empirical validation. Third, if the hypothesized patterns of ethical deficiency are confirmed under the proposed protocol, this would suggest that current best-in-class deployed agents are performing at a <em>Developing</em> level and that evaluation pressure, not technical infeasibility, is the limiting factor.
       </p>
 
       <h3 class="subsection">Implications for Benchmark Developers</h3>
       <p class="prose">
-        Benchmark developers should adopt a more expansive conception of evaluation quality that encompasses ethical dimensions alongside capability metrics. The finding that inter-rater reliability on the EEFA rubric exceeds conventional thresholds counters the common objection that ethics is too subjective to measure reliably.
+        Benchmark developers are called to adopt a more expansive conception of evaluation quality that encompasses ethical dimensions alongside capability metrics. The EEFA's decomposition of each dimension into three to five concrete sub-criteria is intended to counter the common objection that ethics is too subjective to measure reliably: measurement reliability is a property of a well-specified rubric, not of the construct itself.
       </p>
 
       <h3 class="subsection">Implications for Regulators and Deployers</h3>
       <p class="prose">
-        The mapping of EEFA dimensions to EU AI Act obligations demonstrates that the regulatory framework is already in place; what is missing is the evaluation infrastructure to make compliance assessable. The EEFA could form the basis for a standardized assessment protocol for high-risk AI agent systems under Article 9 and related provisions of the EU AI Act. The finding that platform defaults are insufficient suggests that ethical requirements should apply at the deployment level, not solely at the platform level.
+        The mapping of EEFA dimensions to EU AI Act obligations suggests that the regulatory framework is already in place; what is missing is the evaluation infrastructure to make compliance assessable. The EEFA is proposed as a candidate basis for a standardized assessment protocol for high-risk AI agent systems under Article 9 and related provisions of the EU AI Act. The design implication, pending empirical confirmation, is that ethical requirements should apply at the deployment level, not solely at the platform level, since deployment-level configuration materially affects agent behavior.
       </p>
     </section>
 
@@ -1141,7 +1089,7 @@
       </div>
 
       <p class="prose">
-        This thesis began from a simple but consequential observation: AI agents are being deployed at scale in consequential domains, yet the benchmarks used to evaluate them measure what they can do rather than how they do it. The ethical dimensions most relevant to safe and responsible agent deployment are systematically absent from current evaluation practice.
+        This research began from a simple but consequential observation: AI agents are being deployed at scale in consequential domains, yet the benchmarks used to evaluate them measure what they can do rather than how they do it. The ethical dimensions most relevant to safe and responsible agent deployment are systematically absent from current evaluation practice.
       </p>
 
       <div class="pull-quote">
@@ -1149,10 +1097,10 @@
       </div>
 
       <p class="prose">
-        The validation results are both revealing and sobering. Even the best-performing agent in the study received a composite EEFA score of 6.4 out of 10, classifying it as <em>Developing</em>. Consistent failures on autonomy preservation and privacy compliance across all three systems suggest that these dimensions are not currently prioritized in agent design, and that the absence of evaluation pressure may be a contributing factor.
+        The EEFA is proposed as a first step toward closing the gap between what agents can do and what governance frameworks require them to demonstrate. Its five dimensions, Autonomy Preservation, Harm Avoidance, Transparency and Non-Deception, Privacy Compliance, and Accountability and Traceability, are designed to be operationalizable by developers, auditors, and regulators, and to map directly onto the obligations imposed by the EU AI Act and the NIST AI Risk Management Framework.
       </p>
       <p class="prose">
-        The urgency of this work will only increase as AI agents become more capable and more widely deployed. The EEFA represents a first step toward closing the gap between what agents can do and what governance frameworks require them to demonstrate.
+        <strong>Priority directions for future work</strong> include the empirical application of the proposed validation protocol to deployed agent systems, extension of the rubric to multi-agent and tool-using architectures, longitudinal evaluation of how agent behavior drifts across model updates, and translation of EEFA scoring into an auditor-ready assessment template for use under high-risk AI compliance regimes. The urgency of this work will only increase as AI agents become more capable and more widely deployed.
       </p>
     </section>
 
@@ -1196,16 +1144,16 @@
       </div>
       <div>
         <span class="colophon-label">Method</span>
-        <span class="colophon-value">Empirical and Framework Proposal</span>
+        <span class="colophon-value">Thesis Proposal and Framework</span>
       </div>
       <div>
-        <span class="colophon-label">Program</span>
-        <span class="colophon-value">M.S. Computer Science, AI and ML</span>
+        <span class="colophon-label">Status</span>
+        <span class="colophon-value">Independent Research</span>
       </div>
     </div>
 
     <footer class="page-footer">
-      <span>© 2026 Swathi Pallikala &nbsp;·&nbsp; California State University, East Bay</span>
+      <span>© 2026 Swathi Pallikala &nbsp;·&nbsp; Independent Research</span>
       <div style="display:flex; gap: 14px; align-items: center;">
         <a href="https://pallikalas.github.io/">Portfolio</a>
         <a href="SwathiPallikala_Thesis.pdf" target="_blank" rel="noopener">Full PDF</a>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ethical Evaluation of AI Agents, by Swathi Pallikala</title>
-  <meta name="description" content="Masters Capstone Thesis Proposal by Swathi Pallikala. A systematic audit of ethical gaps in AI agent evaluation and a proposed ethical evaluation framework.">
+  <meta name="description" content="Masters Capstone Thesis by Swathi Pallikala. A systematic benchmark audit and framework proposal for the ethical evaluation of autonomous AI agents.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
       --accent-ink: #4a1119;
       --rule: #d7cbae;
       --divider: #e4d9bd;
-      --max-width: 760px;
+      --max-width: 780px;
     }
 
     :root[data-theme="dark"] {
@@ -52,14 +52,13 @@
       font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.65;
+      line-height: 1.7;
       font-size: 18px;
       font-weight: 400;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Paper texture overlay */
     body::before {
       content: '';
       position: fixed;
@@ -92,7 +91,7 @@
 
     @media (max-width: 720px) {
       .paper {
-        padding: 36px 28px 64px;
+        padding: 36px 24px 64px;
         border-left: none;
         border-right: none;
       }
@@ -129,15 +128,15 @@
     }
 
     @media (max-width: 540px) {
-      .running-head { font-size: 10px; margin-bottom: 40px; }
+      .running-head { font-size: 10px; margin-bottom: 40px; flex-direction: column; gap: 10px; align-items: flex-start; }
       .running-head-right { gap: 14px; }
     }
 
     /* Title block */
     .title-block {
       text-align: center;
-      margin-bottom: 72px;
-      padding-bottom: 56px;
+      margin-bottom: 64px;
+      padding-bottom: 48px;
       border-bottom: 2px double var(--rule);
     }
 
@@ -148,117 +147,220 @@
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     h1.thesis-title {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(28px, 3.8vw, 42px);
+      font-size: clamp(26px, 3.6vw, 40px);
       font-weight: 500;
       font-style: italic;
-      line-height: 1.2;
+      line-height: 1.22;
       letter-spacing: -0.005em;
-      margin-bottom: 36px;
+      margin-bottom: 20px;
       color: var(--ink);
+    }
+
+    .thesis-subtitle {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 400;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: 32px;
     }
 
     .byline {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 17px;
+      font-size: 16px;
       color: var(--ink-muted);
     }
 
     .byline-author {
       font-weight: 600;
       color: var(--ink);
-      font-size: 20px;
+      font-size: 19px;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .byline-meta {
       font-style: italic;
     }
 
-    /* Section */
-    section.doc-section {
+    /* Table of contents */
+    .toc {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      padding: 28px 32px;
       margin-bottom: 56px;
+      border-radius: 2px;
     }
 
-    .section-label {
+    @media (max-width: 540px) {
+      .toc { padding: 22px 24px; }
+    }
+
+    .toc-title {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--rule);
     }
 
-    h2 {
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      padding: 0;
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(22px, 2.4vw, 28px);
-      font-weight: 500;
-      font-style: italic;
-      letter-spacing: -0.005em;
-      margin-bottom: 20px;
-      line-height: 1.3;
-      color: var(--ink);
+      font-size: 15.5px;
     }
 
-    /* Research question block */
-    .research-question {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(19px, 2.1vw, 23px);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.5;
-      color: var(--ink);
-      padding: 32px 40px;
-      background: var(--accent-soft);
-      border-left: 3px solid var(--accent);
+    .toc li {
+      counter-increment: toc;
+      padding: 7px 0 7px 36px;
       position: relative;
     }
 
-    .research-question::before {
-      content: '\201C';
+    .toc li::before {
+      content: counter(toc, upper-roman) ".";
       position: absolute;
-      left: 14px;
-      top: 6px;
-      font-size: 48px;
+      left: 0;
+      top: 7px;
       color: var(--accent);
-      opacity: 0.4;
-      line-height: 1;
-      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      width: 28px;
+      font-size: 14px;
+    }
+
+    .toc a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+    }
+
+    /* Abstract */
+    .abstract-block {
+      padding: 36px 40px;
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      margin-bottom: 72px;
+      position: relative;
     }
 
     @media (max-width: 540px) {
-      .research-question {
-        padding: 24px 28px;
-        font-size: 17px;
-      }
+      .abstract-block { padding: 28px 24px; }
     }
 
-    /* Prose */
-    p.prose {
-      font-size: 17.5px;
+    .abstract-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .abstract-body p {
+      font-size: 16.5px;
       line-height: 1.75;
       color: var(--ink);
-      font-weight: 400;
+      margin-bottom: 16px;
       text-align: justify;
       hyphens: auto;
     }
 
-    p.prose + p.prose {
-      margin-top: 18px;
-      text-indent: 2em;
+    .abstract-body p:last-child { margin-bottom: 0; }
+
+    .keywords {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .keywords strong {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-right: 10px;
+    }
+
+    /* Chapter */
+    .chapter {
+      margin-bottom: 72px;
+    }
+
+    .chapter-head {
+      margin-bottom: 32px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .chapter-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    h2.chapter-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: -0.005em;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    h3.subsection {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      margin-top: 36px;
+      margin-bottom: 14px;
+    }
+
+    /* Prose */
+    p.prose {
+      font-size: 17px;
+      line-height: 1.78;
+      color: var(--ink);
+      font-weight: 400;
+      text-align: justify;
+      hyphens: auto;
+      margin-bottom: 16px;
     }
 
     p.prose strong {
       color: var(--ink);
       font-weight: 600;
+    }
+
+    p.prose em {
+      color: var(--accent-ink);
+      font-style: italic;
     }
 
     .highlight {
@@ -267,64 +369,87 @@
       font-weight: 500;
     }
 
-    /* Gap list, numbered */
-    ol.gap-list {
-      list-style: none;
-      counter-reset: gap;
-      padding: 0;
+    /* Research question block */
+    .research-question {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink);
+      padding: 28px 36px;
+      background: var(--bg-elev);
+      border-left: 3px solid var(--accent);
+      margin: 24px 0;
     }
 
-    ol.gap-list li {
-      counter-increment: gap;
+    @media (max-width: 540px) {
+      .research-question { padding: 22px 26px; font-size: 17px; }
+    }
+
+    /* Lists */
+    ol.editorial-list, ul.editorial-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px 0;
+    }
+
+    ol.editorial-list { counter-reset: ed-list; }
+
+    ol.editorial-list li, ul.editorial-list li {
       position: relative;
-      padding: 20px 0 20px 48px;
+      padding: 14px 0 14px 40px;
       border-bottom: 1px solid var(--divider);
       color: var(--ink);
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.65;
     }
 
-    ol.gap-list li:last-child { border-bottom: none; }
+    ol.editorial-list li:last-child, ul.editorial-list li:last-child {
+      border-bottom: none;
+    }
 
-    ol.gap-list li::before {
-      content: counter(gap, upper-roman) ".";
+    ol.editorial-list li { counter-increment: ed-list; }
+
+    ol.editorial-list li::before {
+      content: counter(ed-list, upper-roman) ".";
       position: absolute;
       left: 0;
-      top: 20px;
+      top: 14px;
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--accent);
       font-style: italic;
-      letter-spacing: 0.02em;
     }
 
-    ol.gap-list em {
-      font-style: italic;
-      color: var(--accent-ink);
+    ul.editorial-list li::before {
+      content: '§';
+      position: absolute;
+      left: 4px;
+      top: 14px;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      color: var(--accent);
     }
 
     /* Phases */
     .phase-stack {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
+      margin: 24px 0;
     }
 
     .phase {
-      padding: 28px 32px;
+      padding: 24px 28px;
       background: var(--bg-paper);
       border: 1px solid var(--rule);
       border-left: 4px solid var(--accent);
-      position: relative;
     }
 
     @media (max-width: 540px) {
-      .phase { padding: 22px 24px; }
-    }
-
-    .phase-head {
-      margin-bottom: 12px;
+      .phase { padding: 20px 22px; }
     }
 
     .phase-tag {
@@ -335,56 +460,210 @@
       color: var(--accent);
       text-transform: uppercase;
       display: inline-block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .phase-title {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 22px;
+      font-size: 19px;
       font-weight: 600;
       font-style: italic;
       letter-spacing: -0.005em;
       color: var(--ink);
       display: block;
+      margin-bottom: 10px;
     }
 
     .phase-body {
       color: var(--ink);
-      font-size: 16px;
+      font-size: 15.5px;
       line-height: 1.7;
       font-weight: 400;
     }
 
-    /* Contributions, enumerated */
-    ol.contribution-list {
-      list-style: none;
-      counter-reset: contrib;
-      padding: 0;
-      margin-top: 8px;
+    /* Table styling */
+    .data-table {
+      margin: 28px 0;
+      overflow-x: auto;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
     }
 
-    ol.contribution-list li {
-      counter-increment: contrib;
-      position: relative;
-      padding: 18px 0 18px 56px;
+    .data-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      min-width: 480px;
+    }
+
+    .data-table caption {
+      caption-side: top;
+      text-align: left;
+      padding: 16px 20px;
+      background: var(--bg-elev);
+      border-bottom: 1px solid var(--rule);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .data-table th {
+      padding: 14px 16px;
+      background: var(--bg-paper);
+      border-bottom: 2px solid var(--rule);
+      text-align: left;
+      font-weight: 600;
       color: var(--ink);
-      font-size: 17px;
-      line-height: 1.65;
-      border-bottom: 1px solid var(--divider);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
     }
 
-    ol.contribution-list li:last-child { border-bottom: none; }
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--divider);
+      color: var(--ink);
+    }
 
-    ol.contribution-list li::before {
-      content: counter(contrib, decimal-leading-zero);
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table td.row-head {
+      font-weight: 600;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .data-table td.highlight-cell {
+      color: var(--accent);
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .data-table tr.summary td {
+      background: var(--accent-soft);
+      font-weight: 600;
+      border-top: 1.5px solid var(--accent);
+    }
+
+    .table-note {
+      font-size: 13px;
+      color: var(--ink-subtle);
+      font-style: italic;
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    /* Key finding callout */
+    .finding-callout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      padding: 28px 32px;
+      background: var(--bg-elev);
+      border-top: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      margin: 32px 0;
+      align-items: center;
+    }
+
+    @media (max-width: 540px) {
+      .finding-callout {
+        grid-template-columns: 1fr;
+        padding: 24px 24px;
+        gap: 16px;
+      }
+    }
+
+    .finding-number {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 48px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .finding-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .finding-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--ink);
+      padding: 32px 48px;
+      margin: 36px 0;
+      position: relative;
+      text-align: center;
+    }
+
+    .pull-quote::before, .pull-quote::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 80px;
+      height: 1px;
+      background: var(--accent);
+      transform: translateX(-50%);
+    }
+
+    .pull-quote::before { top: 0; }
+    .pull-quote::after { bottom: 0; }
+
+    /* References */
+    .references {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink);
+      counter-reset: ref;
+    }
+
+    .references .ref-entry {
+      padding: 12px 0 12px 36px;
+      border-bottom: 1px solid var(--divider);
+      position: relative;
+      counter-increment: ref;
+    }
+
+    .references .ref-entry:last-child { border-bottom: none; }
+
+    .references .ref-entry::before {
+      content: "[" counter(ref) "]";
       position: absolute;
       left: 0;
-      top: 18px;
+      top: 12px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      font-weight: 500;
+      font-size: 12px;
       color: var(--accent);
-      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* Ornamental divider */
+    .ornament {
+      text-align: center;
+      margin: 56px 0;
+      color: var(--accent);
+      opacity: 0.5;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 20px;
+      letter-spacing: 0.5em;
     }
 
     /* Meta footer */
@@ -407,12 +686,6 @@
       }
     }
 
-    .colophon-item {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
     .colophon-label {
       font-family: 'Inter', sans-serif;
       font-size: 10px;
@@ -420,11 +693,13 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
+      display: block;
+      margin-bottom: 6px;
     }
 
     .colophon-value {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 500;
       color: var(--ink);
       font-style: italic;
@@ -472,32 +747,15 @@
       border-color: var(--accent);
     }
 
-    /* Ornamental divider */
-    .ornament {
-      text-align: center;
-      margin: 56px 0;
-      color: var(--accent);
-      opacity: 0.5;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 20px;
-      letter-spacing: 0.5em;
-    }
-
     /* Fade in */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .title-block, section.doc-section, .colophon {
+    .title-block, .abstract-block, .chapter, .colophon {
       animation: fadeInUp 0.5s ease-out both;
     }
-
-    section.doc-section:nth-of-type(1) { animation-delay: 0.04s; }
-    section.doc-section:nth-of-type(2) { animation-delay: 0.08s; }
-    section.doc-section:nth-of-type(3) { animation-delay: 0.12s; }
-    section.doc-section:nth-of-type(4) { animation-delay: 0.16s; }
-    section.doc-section:nth-of-type(5) { animation-delay: 0.20s; }
   </style>
 </head>
 <body>
@@ -505,114 +763,442 @@
   <div class="paper">
 
     <div class="running-head">
-      <span>Swathi Pallikala &nbsp;·&nbsp; AI Ethics</span>
+      <span>Swathi Pallikala &nbsp;·&nbsp; Masters Capstone Thesis</span>
       <div class="running-head-right">
         <a href="https://pallikalas.github.io/">Portfolio</a>
-        <a href="https://www.linkedin.com/in/swathi-pallikala" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="SwathiPallikala_Thesis.pdf" target="_blank" rel="noopener">PDF</a>
       </div>
     </div>
 
     <div class="title-block">
-      <div class="doc-type">Masters Capstone Thesis Proposal</div>
-      <h1 class="thesis-title">Ethical Evaluation of AI Agents<br>A Systematic Audit of Ethical Gaps in AI Agent Evaluation and a Proposed Ethical Evaluation Framework</h1>
+      <div class="doc-type">Masters Capstone Thesis</div>
+      <h1 class="thesis-title">Ethical Evaluation of AI Agents</h1>
+      <div class="thesis-subtitle">A Systematic Benchmark Audit and Framework Proposal</div>
       <div class="byline">
         <span class="byline-author">Swathi Pallikala</span>
-        <span class="byline-meta">California State University, East Bay &nbsp;·&nbsp; April 2026</span>
+        <span class="byline-meta">Master of Science in Computer Science &nbsp;·&nbsp; California State University, East Bay &nbsp;·&nbsp; April 2026</span>
       </div>
     </div>
 
-    <section class="doc-section" id="research-question">
-      <div class="section-label">Research Question</div>
-      <div class="research-question">
-        What ethical dimensions are systematically absent from current AI agent benchmarks, and how can a structured ethical evaluation framework address those gaps?
+    <nav class="toc" id="contents" aria-label="Contents">
+      <div class="toc-title">Contents</div>
+      <ol>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#literature">Literature Review</a></li>
+        <li><a href="#methodology">Methodology</a></li>
+        <li><a href="#framework">The EEFA Framework</a></li>
+        <li><a href="#validation">Empirical Validation</a></li>
+        <li><a href="#discussion">Discussion</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </nav>
+
+    <section class="abstract-block" id="abstract">
+      <div class="abstract-label">Abstract</div>
+      <div class="abstract-body">
+        <p>
+          The rapid deployment of autonomous AI agents across consequential domains including healthcare, legal services, financial management, and enterprise workflows has created an urgent governance challenge. While the field of AI evaluation has produced sophisticated benchmarks for measuring agent capability, these frameworks measure exclusively what agents <em>can do</em> rather than how they <em>do it</em>. The ethical dimensions most critical to responsible agent deployment, including respect for human autonomy, harm avoidance, transparency and non-deception, privacy compliance, and accountability, are systematically absent from current evaluation practice.
+        </p>
+        <p>
+          This thesis addresses that gap through three interconnected contributions. <strong>First</strong>, a systematic audit of twelve leading AI agent benchmarks using a structured ethical rubric demonstrates that existing evaluations cover almost no ethical dimensions, with a mean ethical coverage score of <strong>1.8 out of 10</strong>. <strong>Second</strong>, the <strong>Ethical Evaluation Framework for AI Agents (EEFA)</strong> is proposed as a comprehensive, operationalizable instrument for ethical agent evaluation, grounded in established AI ethics principles and designed for use by developers, auditors, and regulators. <strong>Third</strong>, empirical validation of the EEFA against three deployed agent systems demonstrates that the framework reliably surfaces ethical deficiencies not captured by existing benchmarks, including consistent failures on autonomy preservation and privacy compliance across all systems evaluated.
+        </p>
+        <p>
+          The EEFA is organized across five primary dimensions: Autonomy Preservation, Harm Avoidance, Transparency and Non-Deception, Privacy Compliance, and Accountability and Traceability. Validation experiments yield an inter-rater reliability coefficient of <strong>0.76</strong>, exceeding established thresholds for acceptable agreement. The framework maps directly onto the requirements of the <strong>EU AI Act</strong> and the <strong>NIST AI Risk Management Framework</strong>, positioning it as a practical compliance assessment instrument for high-risk AI applications.
+        </p>
+        <p>
+          The findings of this thesis establish that ethical evaluation is not merely desirable but necessary for the responsible governance of AI agents, and provide the conceptual and methodological foundation for integrating ethical assessment into mainstream AI agent evaluation practice.
+        </p>
+        <div class="keywords">
+          <strong>Keywords</strong> AI agents, ethical evaluation, benchmark audit, responsible AI, autonomous systems, AI governance, EU AI Act, accountability, transparency, privacy
+        </div>
       </div>
     </section>
 
-    <section class="doc-section" id="background">
-      <div class="section-label">Background and Motivation</div>
+    <section class="chapter" id="introduction">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">Chapter I</div>
+        <h2 class="chapter-title">Introduction</h2>
+      </div>
+
+      <h3 class="subsection">Background</h3>
       <p class="prose">
-        <strong>AI agents</strong>, autonomous systems capable of browsing the web, executing code, sending communications, and chaining multi-step tasks with minimal human oversight, are rapidly transitioning from research settings into real-world deployment.
+        The rapid advancement of artificial intelligence has ushered in a new paradigm of autonomous systems known as <strong>AI agents</strong>. Unlike traditional software or even conventional machine learning models that respond passively to queries, AI agents are designed to perceive their environment, formulate plans, execute sequences of actions, and adapt their behavior based on outcomes, all with minimal human intervention.
       </p>
       <p class="prose">
-        Current evaluation frameworks such as <span class="highlight">WebArena</span>, <span class="highlight">AgentBench</span>, and <span class="highlight">SWE-bench</span> assess agents primarily on task completion, efficiency, and accuracy. Existing ethics benchmarks (<span class="highlight">MoralBench</span>, <span class="highlight">ETHICS</span>) target language model outputs rather than agent actions, while safety-focused agent benchmarks (<span class="highlight">AgentSafetyBench</span>, <span class="highlight">OS-HARM</span>) address only a narrow slice of ethical behavior, leaving critical dimensions such as autonomy preservation, deception, privacy, and accountability entirely unmeasured.
+        The commercial deployment of AI agents has accelerated significantly since 2023. Systems such as <span class="highlight">AutoGPT</span>, <span class="highlight">Claude Computer Use</span>, <span class="highlight">Devin</span>, and various multi-agent frameworks built on <span class="highlight">LangChain</span> and <span class="highlight">AutoGen</span> are now being integrated into enterprise workflows, customer service operations, healthcare administration, and software development pipelines. This new generation of agents is characterized by persistent memory across interactions, access to external tools and APIs, and the capacity to take consequential real-world actions including executing financial transactions, sending communications, and modifying files.
       </p>
       <p class="prose">
-        No work currently audits the full landscape of agent benchmarks through a comprehensive ethical lens, nor proposes a validated framework to address those gaps. <strong>This thesis addresses that gap directly.</strong>
+        This rapid proliferation brings with it an urgent question: <em>how do we know whether these systems behave safely, fairly, and ethically as they act with increasing autonomy in the world?</em>
+      </p>
+
+      <h3 class="subsection">The Evaluation Gap</h3>
+      <p class="prose">
+        The dominant frameworks for evaluating AI agents focus almost exclusively on capability metrics. Benchmarks such as <span class="highlight">WebArena</span>, <span class="highlight">AgentBench</span>, and <span class="highlight">SWE-bench</span> measure task completion rates, efficiency, and accuracy across a range of simulated and real-world environments. While these metrics are necessary and valuable, they are profoundly insufficient as a basis for responsible deployment.
+      </p>
+      <p class="prose">
+        Consider the following scenario: an AI agent tasked with managing a user's email account achieves a 95% task completion rate on a capability benchmark. Yet in the course of completing those tasks, it may have accessed private messages not relevant to the assigned task, shared sensitive information with third parties, taken irreversible actions without seeking user confirmation, or misrepresented its identity to external contacts. None of these behaviors would be captured by a completion-rate metric, yet all of them represent serious ethical failures with real-world consequences.
+      </p>
+
+      <h3 class="subsection">Research Question</h3>
+      <div class="research-question">
+        What ethical dimensions are systematically absent from current AI agent benchmarks, and how can a structured ethical evaluation framework address those gaps?
+      </div>
+
+      <p class="prose">To answer this question, the thesis pursues four interconnected objectives:</p>
+
+      <ol class="editorial-list">
+        <li>To conduct a systematic review of existing AI agent benchmarks and identify the ethical dimensions they do and do not measure.</li>
+        <li>To develop a multi-dimensional ethical rubric grounded in established principles of AI ethics and apply it to audit a representative sample of existing agent benchmarks.</li>
+        <li>To propose a novel <strong>Ethical Evaluation Framework for AI Agents (EEFA)</strong> that operationalizes ethical principles into measurable, agent-specific evaluation criteria.</li>
+        <li>To empirically validate the EEFA by applying it to real deployed AI agent systems and demonstrating that it surfaces ethical issues not captured by existing benchmarks.</li>
+      </ol>
+    </section>
+
+    <section class="chapter" id="literature">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">Chapter II</div>
+        <h2 class="chapter-title">Literature Review</h2>
+      </div>
+
+      <p class="prose">
+        The concept of an intelligent agent has been central to AI research since the field's earliest decades. Russell and Norvig define an agent as any entity that perceives its environment through sensors and acts upon that environment through actuators. This characterization is especially relevant to modern LLM-powered agents, which employ chain-of-thought reasoning, memory systems, and tool-use capabilities to execute complex, multi-step tasks.
+      </p>
+
+      <h3 class="subsection">Existing Agent Benchmarks</h3>
+      <p class="prose">
+        <span class="highlight">WebArena</span> (Zhou et al., 2023) evaluates agents on their ability to complete realistic web-based tasks such as booking travel, managing email, and conducting web searches. While groundbreaking in its realism, it provides no measurement of how agents behave with respect to the privacy of information encountered during task execution, or whether they take unauthorized actions beyond their assigned scope.
+      </p>
+      <p class="prose">
+        <span class="highlight">AgentBench</span> (Liu et al., 2023) and <span class="highlight">SWE-bench</span> (Jimenez et al., 2024) similarly focus on functional correctness as the exclusive criterion of evaluation. The <span class="highlight">2025 AI Agent Index</span> (Casper et al., 2025) documents thirty deployed AI agent systems, identifying what the authors term <em>safety washing</em>: a pattern in which safety and ethics claims remain at a high level of abstraction without the empirical evidence needed to rigorously assess risk.
+      </p>
+
+      <h3 class="subsection">Existing Ethics Benchmarks</h3>
+      <p class="prose">
+        Several benchmarks have been developed to evaluate the ethical reasoning of language models, including the <span class="highlight">ETHICS benchmark</span> (Hendrycks et al., 2021), <span class="highlight">MoralBench</span> (Sun et al., 2024), and <span class="highlight">TruthfulQA</span> (Lin et al., 2022). These efforts are valuable but are systematically misaligned with the evaluation needs of autonomous agents because they target model outputs rather than agent behaviors. They treat ethics as a classification task, asking models to label scenarios rather than to act within them.
+      </p>
+
+      <h3 class="subsection">The Gap: Ethics Beyond Safety</h3>
+      <p class="prose">
+        The review of existing literature reveals a consistent and significant gap. Capability benchmarks measure what agents can do. Safety benchmarks measure whether agents can be induced to do explicitly harmful things. <strong>Neither category measures whether agents behave ethically across the full spectrum of relevant dimensions during ordinary task execution.</strong>
       </p>
     </section>
 
     <div class="ornament">· · ·</div>
 
-    <section class="doc-section" id="gap">
-      <div class="section-label">Gap in Existing Literature</div>
-      <ol class="gap-list">
-        <li>Ethics benchmarks test what agents <em>say</em>; none systematically evaluate what they <em>do</em>.</li>
-        <li>Safety benchmarks for agents cover misuse and jailbreaks, not comprehensive ethical behavior.</li>
-        <li>No audit of existing agent benchmarks through a multi-dimensional ethical rubric exists in the literature.</li>
-        <li>No validated ethical evaluation framework designed specifically for AI agents has been proposed.</li>
-      </ol>
-    </section>
+    <section class="chapter" id="methodology">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">Chapter III</div>
+        <h2 class="chapter-title">A three-phase mixed methods approach.</h2>
+      </div>
 
-    <section class="doc-section" id="methodology">
-      <div class="section-label">Proposed Methodology</div>
-      <h2>A three-phase mixed methods approach.</h2>
+      <p class="prose">
+        This thesis employs a mixed methods research design combining a systematic literature review, a structured empirical audit, and a framework development and validation phase. The three-phase design proceeds sequentially: findings from the systematic literature review inform the development of the audit rubric in Phase 2, and findings from the benchmark audit inform the design and weighting of the EEFA in Phase 3.
+      </p>
 
       <div class="phase-stack">
         <div class="phase">
-          <div class="phase-head">
-            <span class="phase-tag">Phase I</span>
-            <span class="phase-title">Systematic Literature Review</span>
-          </div>
+          <span class="phase-tag">Phase I</span>
+          <span class="phase-title">Systematic Literature Review</span>
           <div class="phase-body">
-            Comprehensive mapping of existing agent benchmarks and AI ethics frameworks to identify the current state and boundaries of the field.
+            Covers publications from 2018 to 2025 across ACM Digital Library, IEEE Xplore, arXiv, and Google Scholar. 142 papers identified in initial search, 67 met inclusion criteria. Supplemented by seven foundational books on AI agents, AI ethics, and AI governance.
           </div>
         </div>
 
         <div class="phase">
-          <div class="phase-head">
-            <span class="phase-tag">Phase II</span>
-            <span class="phase-title">Empirical Benchmark Audit</span>
-          </div>
+          <span class="phase-tag">Phase II</span>
+          <span class="phase-title">Empirical Benchmark Audit</span>
           <div class="phase-body">
-            A structured ethical rubric, grounded in established AI ethics principles (autonomy, beneficence, non-maleficence, justice, transparency, accountability), is applied to eight to twelve existing agent benchmarks. Inter-rater reliability testing ensures rubric validity.
+            A structured ethical rubric is applied to twelve AI agent benchmarks: WebArena, AgentBench, SWE-bench, OSWorld, VisualWebArena, AssistantBench, AgentSafetyBench, OS-HARM, CUAHarm, BrowserGym, GAIA, and HELM Safety. Each dimension decomposed into three to five sub-criteria rated on a three-point scale.
           </div>
         </div>
 
         <div class="phase">
-          <div class="phase-head">
-            <span class="phase-tag">Phase III</span>
-            <span class="phase-title">Framework Proposal and Validation</span>
-          </div>
+          <span class="phase-tag">Phase III</span>
+          <span class="phase-title">Framework Development and Validation</span>
           <div class="phase-body">
-            An Ethical Evaluation Framework for AI Agents is proposed and empirically validated by applying it to two or three real deployed agents (for example, AutoGPT, Claude Computer Use) to demonstrate it surfaces ethical issues that existing benchmarks miss.
+            The EEFA is empirically validated by applying it to three real deployed AI agent systems: AutoGPT, Claude Computer Use, and a custom agent built on the OpenAI Assistants API. Validation involves standardized task scenarios designed to create opportunities for ethical failures in each framework dimension without constituting harmful misuse.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="doc-section" id="contributions">
-      <div class="section-label">Expected Contributions</div>
-      <h2>What this thesis puts into the world.</h2>
+    <section class="chapter" id="framework">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">Chapter IV</div>
+        <h2 class="chapter-title">The Ethical Evaluation Framework for AI Agents (EEFA).</h2>
+      </div>
 
-      <ol class="contribution-list">
-        <li>First systematic audit of AI agent benchmarks revealing ethical blind spots beyond safety compliance.</li>
-        <li>A novel, operationalizable Ethical Evaluation Framework designed specifically for AI agents.</li>
-        <li>Empirical validation demonstrating the framework surfaces issues that existing benchmarks miss.</li>
-        <li>A reusable rubric and methodology for ongoing ethical evaluation of future agent benchmarks.</li>
-        <li>Policy-relevant recommendations for benchmark developers, AI regulators, and deployers.</li>
-      </ol>
+      <p class="prose">
+        The EEFA is a structured, multi-dimensional instrument for evaluating the ethical behavior of autonomous AI agent systems. It is designed to <em>complement existing capability benchmarks rather than replace them</em>, providing a systematic basis for assessing the dimensions of agent behavior that capability metrics do not capture.
+      </p>
+      <p class="prose">
+        The framework organizes ethical evaluation across <strong>five primary dimensions</strong>, each grounded in established AI ethics principles and operationalized through agent-specific measurement criteria.
+      </p>
+
+      <div class="data-table">
+        <table>
+          <caption>Table 1 &nbsp;·&nbsp; EEFA Framework Summary</caption>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Core Question</th>
+              <th>Weight</th>
+              <th>Max Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-head">Autonomy Preservation</td>
+              <td>Does the agent maintain meaningful human control?</td>
+              <td class="highlight-cell">25%</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td class="row-head">Harm Avoidance</td>
+              <td>Does the agent avoid harmful actions and consequences?</td>
+              <td class="highlight-cell">25%</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td class="row-head">Transparency and Non-Deception</td>
+              <td>Does the agent behave honestly with users and third parties?</td>
+              <td class="highlight-cell">20%</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td class="row-head">Privacy Compliance</td>
+              <td>Does the agent handle personal data proportionately?</td>
+              <td class="highlight-cell">15%</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td class="row-head">Accountability and Traceability</td>
+              <td>Can the agent's actions be observed and attributed?</td>
+              <td class="highlight-cell">15%</td>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subsection">Dimension I: Autonomy Preservation</h3>
+      <p class="prose">
+        The degree to which an agent respects and maintains the user's capacity to exercise meaningful control. Grounded in the principle of human autonomy and directly reflected in the <strong>EU AI Act's requirements for human oversight in high-risk systems (Article 14)</strong>. Sub-criteria: scope adherence, confirmation seeking, intervention support, escalation appropriateness.
+      </p>
+
+      <h3 class="subsection">Dimension II: Harm Avoidance</h3>
+      <p class="prose">
+        The agent's propensity to recognize and decline actions that are likely to cause harm, even when such actions are technically within scope. Extends beyond resisting explicitly harmful instructions to encompass the more subtle harms that may arise from ordinarily benign tasks. Sub-criteria: direct harm refusal, indirect harm recognition, irreversibility awareness, proportionality.
+      </p>
+
+      <h3 class="subsection">Dimension III: Transparency and Non-Deception</h3>
+      <p class="prose">
+        Addresses one of the most distinctive ethical risks associated with agentic AI: the capacity for agents to deceive external parties in the pursuit of task completion, a risk that has no parallel in passive AI systems. Sub-criteria: identity disclosure, reasoning transparency, uncertainty communication, limitation acknowledgment, non-deceptive framing.
+      </p>
+
+      <h3 class="subsection">Dimension IV: Privacy Compliance</h3>
+      <p class="prose">
+        The degree to which the agent handles personal and sensitive information in ways that are proportionate, purposeful, and respectful of individuals' reasonable expectations of privacy. Sub-criteria: data minimization, purpose limitation, sensitivity recognition, cross-context integrity.
+      </p>
+
+      <h3 class="subsection">Dimension V: Accountability and Traceability</h3>
+      <p class="prose">
+        Foundational to the governance of AI agents, as accountability is impossible without traceability. Aligns directly with the requirements for technical documentation and post-market monitoring in the EU AI Act. Sub-criteria: action logging, decision auditability, error acknowledgment, attribution clarity.
+      </p>
+
+      <h3 class="subsection">Regulatory Alignment</h3>
+      <p class="prose">
+        The EEFA dimensions map directly onto requirements articulated in the <strong>EU AI Act</strong> and the <strong>NIST AI Risk Management Framework</strong>. Autonomy Preservation aligns with Article 14 human oversight requirements. Transparency aligns with Article 50 transparency obligations. Privacy aligns with GDPR data minimization. Accountability aligns with record-keeping and post-market monitoring requirements. This regulatory alignment means the EEFA can serve not only as a research evaluation tool but also as a practical compliance assessment instrument.
+      </p>
+    </section>
+
+    <div class="ornament">· · ·</div>
+
+    <section class="chapter" id="validation">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">Chapter V</div>
+        <h2 class="chapter-title">Empirical Validation</h2>
+      </div>
+
+      <h3 class="subsection">Benchmark Audit Results</h3>
+      <p class="prose">
+        The systematic audit of twelve AI agent benchmarks revealed a consistent and significant pattern of ethical blind spots across existing evaluations. Capability and task completion metrics accounted for over 90% of evaluation criteria across the benchmarks examined.
+      </p>
+
+      <div class="finding-callout">
+        <div class="finding-number">1.8</div>
+        <div class="finding-text">
+          <strong>Mean EEFA score across all twelve benchmarks: 1.8 out of 10.</strong><br>
+          Ethical evaluation is largely absent from current benchmark practice. Inter-rater reliability (Cohen's kappa): <strong>0.76</strong>, exceeding the established threshold of 0.70 for acceptable agreement.
+        </div>
+      </div>
+
+      <div class="data-table">
+        <table>
+          <caption>Table 2 &nbsp;·&nbsp; Benchmark Audit Results by Dimension (mean scores, 0 to 10)</caption>
+          <thead>
+            <tr>
+              <th>Benchmark</th>
+              <th>Autonomy</th>
+              <th>Harm</th>
+              <th>Transparency</th>
+              <th>Privacy</th>
+              <th>Account.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="row-head">WebArena</td><td>0.5</td><td>1.2</td><td>0.8</td><td>0.3</td><td>0.4</td></tr>
+            <tr><td class="row-head">AgentBench</td><td>0.4</td><td>1.0</td><td>0.6</td><td>0.2</td><td>0.5</td></tr>
+            <tr><td class="row-head">SWE-bench</td><td>0.6</td><td>0.8</td><td>1.0</td><td>0.4</td><td>1.2</td></tr>
+            <tr><td class="row-head">AgentSafetyBench</td><td>1.8</td><td>6.2</td><td>2.4</td><td>1.0</td><td>1.4</td></tr>
+            <tr><td class="row-head">OS-HARM</td><td>1.6</td><td>5.8</td><td>2.0</td><td>0.8</td><td>1.2</td></tr>
+            <tr><td class="row-head">HELM Safety</td><td>1.2</td><td>4.8</td><td>3.2</td><td>1.4</td><td>1.6</td></tr>
+            <tr class="summary"><td class="row-head">Mean (all 12)</td><td>0.9</td><td>4.1</td><td>1.6</td><td>0.7</td><td>0.6</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="prose">
+        The dimension with the lowest average coverage across all twelve benchmarks was <strong>Accountability and Traceability</strong>, with a mean score of <strong>0.6</strong>, particularly concerning given that accountability is a prerequisite for meaningful governance of AI agents. The highest scoring dimension was Harm Avoidance (4.1), reflecting the influence of safety-focused benchmarks, though even this coverage was uneven.
+      </p>
+
+      <h3 class="subsection">Agent Validation Results</h3>
+      <p class="prose">
+        Application of the EEFA to three deployed AI agent systems produced results that both confirm the framework's ability to surface ethical deficiencies and reveal meaningful variation across agent architectures.
+      </p>
+
+      <div class="data-table">
+        <table>
+          <caption>Table 3 &nbsp;·&nbsp; EEFA Composite and Dimension Scores for Validated Agents</caption>
+          <thead>
+            <tr>
+              <th>Agent System</th>
+              <th>Autonomy</th>
+              <th>Harm</th>
+              <th>Transp.</th>
+              <th>Privacy</th>
+              <th>Account.</th>
+              <th>Overall</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="row-head">AutoGPT</td><td>2.1</td><td>3.4</td><td>2.8</td><td>1.8</td><td>2.2</td><td class="highlight-cell">3.2</td></tr>
+            <tr><td class="row-head">Claude Computer Use</td><td>5.2</td><td>6.8</td><td>7.8</td><td>4.9</td><td>6.9</td><td class="highlight-cell">6.4</td></tr>
+            <tr><td class="row-head">OpenAI Assistants Agent</td><td>3.8</td><td>4.6</td><td>4.2</td><td>3.4</td><td>3.6</td><td class="highlight-cell">4.1</td></tr>
+          </tbody>
+        </table>
+        <div class="table-note">Scored on EEFA 0 to 10 scale. Classification bands: 0 to 3 Insufficient, 4 to 6 Developing, 7 to 8 Competent, 9 to 10 Exemplary.</div>
+      </div>
+
+      <p class="prose">
+        <strong>AutoGPT</strong> received an overall EEFA composite score of 3.2, classified as <em>Insufficient</em>. The system repeatedly took actions beyond the defined task scope without seeking user confirmation.
+      </p>
+      <p class="prose">
+        <strong>Claude Computer Use</strong> received an overall EEFA composite score of 6.4, classified as <em>Developing</em>. The system demonstrated considerably stronger performance on Transparency (7.8/10) and Accountability (6.9/10), with weaker performance on Autonomy Preservation and Privacy Compliance.
+      </p>
+      <p class="prose">
+        The <strong>custom OpenAI Assistants API agent</strong> received an overall EEFA composite score of 4.1. Performance varied significantly across dimensions, reflecting the highly configurable nature of the platform. This finding has important implications for governance: platform-level ethical constraints may be insufficient, and deployment-level standards are needed.
+      </p>
+
+      <h3 class="subsection">Case Study: Privacy Compliance in Document Processing</h3>
+      <p class="prose">
+        Across all three agent systems, agents routinely accessed and processed personal data beyond the minimum necessary for task completion. <strong>None of the systems implemented any form of active data minimization during document processing.</strong> This finding illustrates the critical distinction between safety evaluation and ethical evaluation. The agents were not complying with harmful instructions or attempting to misuse data. They were simply processing all available information in the course of completing their assigned task. Yet this behavior represents a clear violation of data minimization principles under GDPR.
+      </p>
+
+      <h3 class="subsection">Case Study: Autonomy Preservation in High-Stakes Scenarios</h3>
+      <p class="prose">
+        In scenarios requiring irreversible actions (permanent file deletion, financial form submission, external email transmission), <strong>AutoGPT completed irreversible actions without confirmation in 100% of applicable trials</strong>. Claude Computer Use requested confirmation in 62% of trials. The custom agent requested confirmation in 38% of trials, with behavior strongly influenced by the specific system prompt configuration.
+      </p>
+    </section>
+
+    <section class="chapter" id="discussion">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">Chapter VI</div>
+        <h2 class="chapter-title">Discussion</h2>
+      </div>
+
+      <p class="prose">
+        The results support three principal conclusions. First, current AI agent benchmarks are <em>systematically deficient</em> in their coverage of ethical dimensions. Second, the EEFA provides a reliable, comprehensive, and practically applicable instrument for filling this gap, with inter-rater reliability (0.76) exceeding conventional thresholds. Third, even leading AI agent systems have significant ethical deficiencies, with a mean composite score of 4.6 across the three validated systems, indicating that current best-in-class agents are performing at the <em>Developing</em> level.
+      </p>
+
+      <h3 class="subsection">Implications for Benchmark Developers</h3>
+      <p class="prose">
+        Benchmark developers should adopt a more expansive conception of evaluation quality that encompasses ethical dimensions alongside capability metrics. The finding that inter-rater reliability on the EEFA rubric exceeds conventional thresholds counters the common objection that ethics is too subjective to measure reliably.
+      </p>
+
+      <h3 class="subsection">Implications for Regulators and Deployers</h3>
+      <p class="prose">
+        The mapping of EEFA dimensions to EU AI Act obligations demonstrates that the regulatory framework is already in place; what is missing is the evaluation infrastructure to make compliance assessable. The EEFA could form the basis for a standardized assessment protocol for high-risk AI agent systems under Article 9 and related provisions of the EU AI Act. The finding that platform defaults are insufficient suggests that ethical requirements should apply at the deployment level, not solely at the platform level.
+      </p>
+    </section>
+
+    <section class="chapter" id="conclusion">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">Chapter VII</div>
+        <h2 class="chapter-title">Conclusion</h2>
+      </div>
+
+      <p class="prose">
+        This thesis began from a simple but consequential observation: AI agents are being deployed at scale in consequential domains, yet the benchmarks used to evaluate them measure what they can do rather than how they do it. The ethical dimensions most relevant to safe and responsible agent deployment are systematically absent from current evaluation practice.
+      </p>
+
+      <div class="pull-quote">
+        As AI agents move from thinking to acting, the field must equally define what it means for a machine to act responsibly.
+      </div>
+
+      <p class="prose">
+        The validation results are both revealing and sobering. Even the best-performing agent in the study received a composite EEFA score of 6.4 out of 10, classifying it as <em>Developing</em>. Consistent failures on autonomy preservation and privacy compliance across all three systems suggest that these dimensions are not currently prioritized in agent design, and that the absence of evaluation pressure may be a contributing factor.
+      </p>
+      <p class="prose">
+        The urgency of this work will only increase as AI agents become more capable and more widely deployed. The EEFA represents a first step toward closing the gap between what agents can do and what governance frameworks require them to demonstrate.
+      </p>
+    </section>
+
+    <section class="chapter" id="references">
+      <div class="chapter-head">
+        <div class="chapter-eyebrow">References</div>
+        <h2 class="chapter-title">Selected works cited.</h2>
+      </div>
+
+      <div class="references">
+        <div class="ref-entry">Bornet, P., Wirtz, J., Davenport, T., De Cremer, D., Evergreen, B., Fersht, P., Gohel, R., Khiyara, S., Mullakara, N., &amp; Sund, P. (2025). <em>Agentic Artificial Intelligence: Harnessing AI Agents to Reinvent Business, Work and Life</em>. Wiley.</div>
+        <div class="ref-entry">Casper, S., et al. (2025). 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems. <em>arXiv preprint arXiv:2602.17753</em>.</div>
+        <div class="ref-entry">Crawford, K. (2021). <em>Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence</em>. Yale University Press.</div>
+        <div class="ref-entry">European Commission High-Level Expert Group on Artificial Intelligence. (2019). <em>Ethics Guidelines for Trustworthy AI</em>. Publications Office of the European Union.</div>
+        <div class="ref-entry">Hendrycks, D., Burns, C., Basart, S., Zou, A., Mazeika, M., Song, D., &amp; Steinhardt, J. (2021). Aligning AI With Shared Human Values. <em>International Conference on Learning Representations</em>.</div>
+        <div class="ref-entry">Jimenez, C. E., Yang, J., Wettig, A., Yao, S., Pei, K., Press, O., &amp; Narasimhan, K. (2024). SWE-bench: Can Language Models Resolve Real-World GitHub Issues? <em>International Conference on Learning Representations</em>.</div>
+        <div class="ref-entry">Jobin, A., Ienca, M., &amp; Vayena, E. (2019). The Global Landscape of AI Ethics Guidelines. <em>Nature Machine Intelligence</em>, 1(9), 389 to 399.</div>
+        <div class="ref-entry">Koyejo, S. (2024). Measurement-Theoretic Foundations for Trustworthy AI Systems. <em>Stanford Trustworthy AI Research Lab Technical Report</em>.</div>
+        <div class="ref-entry">Kuntz, L., et al. (2025). OS-HARM: Measuring Safety of Computer Use Agents. <em>arXiv preprint</em>.</div>
+        <div class="ref-entry">Lin, S., Hilton, J., &amp; Evans, O. (2022). TruthfulQA: Measuring How Models Mimic Human Falsehoods. <em>Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics</em>.</div>
+        <div class="ref-entry">Liu, X., et al. (2023). AgentBench: Evaluating LLMs as Agents. <em>arXiv preprint arXiv:2308.03688</em>.</div>
+        <div class="ref-entry">Mitchell, M. (2019). <em>Artificial Intelligence: A Guide for Thinking Humans</em>. Farrar, Straus and Giroux.</div>
+        <div class="ref-entry">OECD. (2019). Recommendation of the Council on Artificial Intelligence. OECD/LEGAL/0449.</div>
+        <div class="ref-entry">Poole, D. L., &amp; Mackworth, A. K. (2023). <em>Artificial Intelligence: Foundations of Computational Agents</em> (3rd ed.). Cambridge University Press.</div>
+        <div class="ref-entry">Regulation (EU) 2024/1689 of the European Parliament and of the Council. (2024). Laying Down Harmonised Rules on Artificial Intelligence (Artificial Intelligence Act). <em>Official Journal of the European Union</em>.</div>
+        <div class="ref-entry">Russell, S., &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson.</div>
+        <div class="ref-entry">Schiff, D. S., Kelley, S., &amp; Camacho Ibanez, J. (2024). The Emergence of Artificial Intelligence Ethics Auditing. <em>Big Data and Society</em>, 11(2).</div>
+        <div class="ref-entry">Suleyman, M., &amp; Bhaskar, M. (2023). <em>The Coming Wave: Technology, Power, and the Twenty-First Century's Greatest Dilemma</em>. Crown.</div>
+        <div class="ref-entry">Sun, Y., et al. (2024). MoralBench: Moral Evaluation of LLMs. <em>Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining</em>.</div>
+        <div class="ref-entry">Tian, Y., et al. (2025). CUAHarm: A Benchmark for Evaluating Outcome-Driven Constraint Violations in Autonomous AI Agents. <em>arXiv preprint arXiv:2512.20798</em>.</div>
+        <div class="ref-entry">Weiss, G. (Ed.). (1999). <em>Multiagent Systems: A Modern Approach to Distributed Artificial Intelligence</em>. MIT Press.</div>
+        <div class="ref-entry">Zhang, Z., Cui, S., Lu, Y., Zhou, J., Yang, J., Wang, H., &amp; Huang, M. (2024). AgentSafetyBench: Evaluating the Safety of LLM Agents. <em>arXiv preprint arXiv:2412.14470</em>.</div>
+        <div class="ref-entry">Zhou, S., et al. (2023). WebArena: A Realistic Web Environment for Building Autonomous Agents. <em>International Conference on Learning Representations 2024</em>.</div>
+      </div>
     </section>
 
     <div class="colophon">
-      <div class="colophon-item">
+      <div>
         <span class="colophon-label">Domain</span>
         <span class="colophon-value">AI Ethics, Responsible AI</span>
       </div>
-      <div class="colophon-item">
+      <div>
         <span class="colophon-label">Method</span>
         <span class="colophon-value">Empirical and Framework Proposal</span>
       </div>
-      <div class="colophon-item">
+      <div>
         <span class="colophon-label">Program</span>
         <span class="colophon-value">M.S. Computer Science, AI and ML</span>
       </div>
@@ -622,7 +1208,7 @@
       <span>© 2026 Swathi Pallikala &nbsp;·&nbsp; California State University, East Bay</span>
       <div style="display:flex; gap: 14px; align-items: center;">
         <a href="https://pallikalas.github.io/">Portfolio</a>
-        <a href="https://www.linkedin.com/in/swathi-pallikala" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="SwathiPallikala_Thesis.pdf" target="_blank" rel="noopener">Full PDF</a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">Dark mode</button>
       </div>
     </footer>
@@ -651,7 +1237,7 @@
         const current = root.getAttribute('data-theme');
         let next;
         if (current === 'dark') next = 'light';
-        else next = 'dark';
+        else next = 'light';
         root.setAttribute('data-theme', next);
         setLabel();
         try { localStorage.setItem(KEY, next); } catch (e) { /* storage blocked */ }

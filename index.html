@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethical Evaluation of AI Agents, by Swathi Pallikala</title>
+  <meta name="description" content="Masters Capstone Thesis Proposal by Swathi Pallikala. A systematic audit of ethical gaps in AI agent evaluation and a proposed ethical evaluation framework.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f1e4;
+      --bg-paper: #fbf7eb;
+      --bg-elev: #f1ead9;
+      --ink: #1a1612;
+      --ink-muted: #5a4f42;
+      --ink-subtle: #8a7f6e;
+      --accent: #7a1f2b;
+      --accent-soft: rgba(122, 31, 43, 0.08);
+      --accent-ink: #4a1119;
+      --rule: #d7cbae;
+      --divider: #e4d9bd;
+      --max-width: 760px;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #15110c;
+      --bg-paper: #1d1811;
+      --bg-elev: #241e14;
+      --ink: #f1e8d4;
+      --ink-muted: #a69a82;
+      --ink-subtle: #6e634f;
+      --accent: #c87885;
+      --accent-soft: rgba(200, 120, 133, 0.1);
+      --accent-ink: #e39aa5;
+      --rule: #3a3024;
+      --divider: #2e261b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      font-size: 18px;
+      font-weight: 400;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Paper texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse at top left, rgba(122, 31, 43, 0.035) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(74, 17, 25, 0.025) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :root[data-theme="dark"] body::before {
+      background-image:
+        radial-gradient(ellipse at top left, rgba(200, 120, 133, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(227, 154, 165, 0.03) 0%, transparent 50%);
+    }
+
+    .paper {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      background: var(--bg-paper);
+      border-left: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      padding: 64px 72px 96px;
+      box-shadow: 0 2px 40px rgba(74, 17, 25, 0.04);
+      min-height: 100vh;
+    }
+
+    @media (max-width: 720px) {
+      .paper {
+        padding: 36px 28px 64px;
+        border-left: none;
+        border-right: none;
+      }
+    }
+
+    /* Running head */
+    .running-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      margin-bottom: 56px;
+      border-bottom: 1px solid var(--rule);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-subtle);
+      font-weight: 500;
+    }
+
+    .running-head a {
+      color: var(--ink-subtle);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .running-head a:hover { color: var(--accent); }
+
+    .running-head-right {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 540px) {
+      .running-head { font-size: 10px; margin-bottom: 40px; }
+      .running-head-right { gap: 14px; }
+    }
+
+    /* Title block */
+    .title-block {
+      text-align: center;
+      margin-bottom: 72px;
+      padding-bottom: 56px;
+      border-bottom: 2px double var(--rule);
+    }
+
+    .doc-type {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    h1.thesis-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(28px, 3.8vw, 42px);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.2;
+      letter-spacing: -0.005em;
+      margin-bottom: 36px;
+      color: var(--ink);
+    }
+
+    .byline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      color: var(--ink-muted);
+    }
+
+    .byline-author {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 20px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .byline-meta {
+      font-style: italic;
+    }
+
+    /* Section */
+    section.doc-section {
+      margin-bottom: 56px;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    h2 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(22px, 2.4vw, 28px);
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: -0.005em;
+      margin-bottom: 20px;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    /* Research question block */
+    .research-question {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(19px, 2.1vw, 23px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink);
+      padding: 32px 40px;
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      position: relative;
+    }
+
+    .research-question::before {
+      content: '\201C';
+      position: absolute;
+      left: 14px;
+      top: 6px;
+      font-size: 48px;
+      color: var(--accent);
+      opacity: 0.4;
+      line-height: 1;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    @media (max-width: 540px) {
+      .research-question {
+        padding: 24px 28px;
+        font-size: 17px;
+      }
+    }
+
+    /* Prose */
+    p.prose {
+      font-size: 17.5px;
+      line-height: 1.75;
+      color: var(--ink);
+      font-weight: 400;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    p.prose + p.prose {
+      margin-top: 18px;
+      text-indent: 2em;
+    }
+
+    p.prose strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .highlight {
+      font-style: italic;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* Gap list, numbered */
+    ol.gap-list {
+      list-style: none;
+      counter-reset: gap;
+      padding: 0;
+    }
+
+    ol.gap-list li {
+      counter-increment: gap;
+      position: relative;
+      padding: 20px 0 20px 48px;
+      border-bottom: 1px solid var(--divider);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    ol.gap-list li:last-child { border-bottom: none; }
+
+    ol.gap-list li::before {
+      content: counter(gap, upper-roman) ".";
+      position: absolute;
+      left: 0;
+      top: 20px;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    ol.gap-list em {
+      font-style: italic;
+      color: var(--accent-ink);
+    }
+
+    /* Phases */
+    .phase-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .phase {
+      padding: 28px 32px;
+      background: var(--bg-paper);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--accent);
+      position: relative;
+    }
+
+    @media (max-width: 540px) {
+      .phase { padding: 22px 24px; }
+    }
+
+    .phase-head {
+      margin-bottom: 12px;
+    }
+
+    .phase-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .phase-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      font-style: italic;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+      display: block;
+    }
+
+    .phase-body {
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* Contributions, enumerated */
+    ol.contribution-list {
+      list-style: none;
+      counter-reset: contrib;
+      padding: 0;
+      margin-top: 8px;
+    }
+
+    ol.contribution-list li {
+      counter-increment: contrib;
+      position: relative;
+      padding: 18px 0 18px 56px;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.65;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    ol.contribution-list li:last-child { border-bottom: none; }
+
+    ol.contribution-list li::before {
+      content: counter(contrib, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+
+    /* Meta footer */
+    .colophon {
+      margin-top: 72px;
+      padding: 32px 36px;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--accent);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .colophon {
+        grid-template-columns: 1fr;
+        padding: 24px 28px;
+        gap: 16px;
+      }
+    }
+
+    .colophon-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .colophon-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .colophon-value {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer.page-footer {
+      margin-top: 72px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--ink-subtle);
+    }
+
+    footer.page-footer a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer.page-footer a:hover { color: var(--accent); }
+
+    .theme-toggle {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      color: var(--ink-muted);
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Ornamental divider */
+    .ornament {
+      text-align: center;
+      margin: 56px 0;
+      color: var(--accent);
+      opacity: 0.5;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 20px;
+      letter-spacing: 0.5em;
+    }
+
+    /* Fade in */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title-block, section.doc-section, .colophon {
+      animation: fadeInUp 0.5s ease-out both;
+    }
+
+    section.doc-section:nth-of-type(1) { animation-delay: 0.04s; }
+    section.doc-section:nth-of-type(2) { animation-delay: 0.08s; }
+    section.doc-section:nth-of-type(3) { animation-delay: 0.12s; }
+    section.doc-section:nth-of-type(4) { animation-delay: 0.16s; }
+    section.doc-section:nth-of-type(5) { animation-delay: 0.20s; }
+  </style>
+</head>
+<body>
+
+  <div class="paper">
+
+    <div class="running-head">
+      <span>Swathi Pallikala &nbsp;·&nbsp; AI Ethics</span>
+      <div class="running-head-right">
+        <a href="https://pallikalas.github.io/">Portfolio</a>
+        <a href="https://www.linkedin.com/in/swathi-pallikala" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="title-block">
+      <div class="doc-type">Masters Capstone Thesis Proposal</div>
+      <h1 class="thesis-title">Ethical Evaluation of AI Agents<br>A Systematic Audit of Ethical Gaps in AI Agent Evaluation and a Proposed Ethical Evaluation Framework</h1>
+      <div class="byline">
+        <span class="byline-author">Swathi Pallikala</span>
+        <span class="byline-meta">California State University, East Bay &nbsp;·&nbsp; April 2026</span>
+      </div>
+    </div>
+
+    <section class="doc-section" id="research-question">
+      <div class="section-label">Research Question</div>
+      <div class="research-question">
+        What ethical dimensions are systematically absent from current AI agent benchmarks, and how can a structured ethical evaluation framework address those gaps?
+      </div>
+    </section>
+
+    <section class="doc-section" id="background">
+      <div class="section-label">Background and Motivation</div>
+      <p class="prose">
+        <strong>AI agents</strong>, autonomous systems capable of browsing the web, executing code, sending communications, and chaining multi-step tasks with minimal human oversight, are rapidly transitioning from research settings into real-world deployment.
+      </p>
+      <p class="prose">
+        Current evaluation frameworks such as <span class="highlight">WebArena</span>, <span class="highlight">AgentBench</span>, and <span class="highlight">SWE-bench</span> assess agents primarily on task completion, efficiency, and accuracy. Existing ethics benchmarks (<span class="highlight">MoralBench</span>, <span class="highlight">ETHICS</span>) target language model outputs rather than agent actions, while safety-focused agent benchmarks (<span class="highlight">AgentSafetyBench</span>, <span class="highlight">OS-HARM</span>) address only a narrow slice of ethical behavior, leaving critical dimensions such as autonomy preservation, deception, privacy, and accountability entirely unmeasured.
+      </p>
+      <p class="prose">
+        No work currently audits the full landscape of agent benchmarks through a comprehensive ethical lens, nor proposes a validated framework to address those gaps. <strong>This thesis addresses that gap directly.</strong>
+      </p>
+    </section>
+
+    <div class="ornament">· · ·</div>
+
+    <section class="doc-section" id="gap">
+      <div class="section-label">Gap in Existing Literature</div>
+      <ol class="gap-list">
+        <li>Ethics benchmarks test what agents <em>say</em>; none systematically evaluate what they <em>do</em>.</li>
+        <li>Safety benchmarks for agents cover misuse and jailbreaks, not comprehensive ethical behavior.</li>
+        <li>No audit of existing agent benchmarks through a multi-dimensional ethical rubric exists in the literature.</li>
+        <li>No validated ethical evaluation framework designed specifically for AI agents has been proposed.</li>
+      </ol>
+    </section>
+
+    <section class="doc-section" id="methodology">
+      <div class="section-label">Proposed Methodology</div>
+      <h2>A three-phase mixed methods approach.</h2>
+
+      <div class="phase-stack">
+        <div class="phase">
+          <div class="phase-head">
+            <span class="phase-tag">Phase I</span>
+            <span class="phase-title">Systematic Literature Review</span>
+          </div>
+          <div class="phase-body">
+            Comprehensive mapping of existing agent benchmarks and AI ethics frameworks to identify the current state and boundaries of the field.
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-head">
+            <span class="phase-tag">Phase II</span>
+            <span class="phase-title">Empirical Benchmark Audit</span>
+          </div>
+          <div class="phase-body">
+            A structured ethical rubric, grounded in established AI ethics principles (autonomy, beneficence, non-maleficence, justice, transparency, accountability), is applied to eight to twelve existing agent benchmarks. Inter-rater reliability testing ensures rubric validity.
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-head">
+            <span class="phase-tag">Phase III</span>
+            <span class="phase-title">Framework Proposal and Validation</span>
+          </div>
+          <div class="phase-body">
+            An Ethical Evaluation Framework for AI Agents is proposed and empirically validated by applying it to two or three real deployed agents (for example, AutoGPT, Claude Computer Use) to demonstrate it surfaces ethical issues that existing benchmarks miss.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" id="contributions">
+      <div class="section-label">Expected Contributions</div>
+      <h2>What this thesis puts into the world.</h2>
+
+      <ol class="contribution-list">
+        <li>First systematic audit of AI agent benchmarks revealing ethical blind spots beyond safety compliance.</li>
+        <li>A novel, operationalizable Ethical Evaluation Framework designed specifically for AI agents.</li>
+        <li>Empirical validation demonstrating the framework surfaces issues that existing benchmarks miss.</li>
+        <li>A reusable rubric and methodology for ongoing ethical evaluation of future agent benchmarks.</li>
+        <li>Policy-relevant recommendations for benchmark developers, AI regulators, and deployers.</li>
+      </ol>
+    </section>
+
+    <div class="colophon">
+      <div class="colophon-item">
+        <span class="colophon-label">Domain</span>
+        <span class="colophon-value">AI Ethics, Responsible AI</span>
+      </div>
+      <div class="colophon-item">
+        <span class="colophon-label">Method</span>
+        <span class="colophon-value">Empirical and Framework Proposal</span>
+      </div>
+      <div class="colophon-item">
+        <span class="colophon-label">Program</span>
+        <span class="colophon-value">M.S. Computer Science, AI and ML</span>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span>© 2026 Swathi Pallikala &nbsp;·&nbsp; California State University, East Bay</span>
+      <div style="display:flex; gap: 14px; align-items: center;">
+        <a href="https://pallikalas.github.io/">Portfolio</a>
+        <a href="https://www.linkedin.com/in/swathi-pallikala" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">Dark mode</button>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const KEY = 'sp-thesis-theme';
+
+      function setLabel() {
+        const current = root.getAttribute('data-theme');
+        btn.textContent = current === 'dark' ? 'Light mode' : 'Dark mode';
+      }
+
+      try {
+        const saved = localStorage.getItem(KEY);
+        if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+      } catch (e) { /* storage blocked */ }
+
+      setLabel();
+
+      btn.addEventListener('click', function () {
+        const current = root.getAttribute('data-theme');
+        let next;
+        if (current === 'dark') next = 'light';
+        else next = 'dark';
+        root.setAttribute('data-theme', next);
+        setLabel();
+        try { localStorage.setItem(KEY, next); } catch (e) { /* storage blocked */ }
+      });
+    })();
+  </script>
+
+</body>
+</html>
